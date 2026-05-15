@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-
 import { TypeAnimation } from "react-type-animation";
+
+import Image from "next/image";
 
 import {
   FaGithub,
@@ -12,7 +13,7 @@ import {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen  overflow-hidden flex items-center justify-center px-6 pt-32 pb-20">
+    <section className="relative min-h-screen overflow-hidden flex items-center justify-center px-6 pt-32 pb-20">
 
       {/* Grid Background */}
       <div className="absolute inset-0 bg-grid opacity-20" />
@@ -21,51 +22,51 @@ export default function Hero() {
       <div className="absolute top-[-200px] left-[-100px] w-[400px] h-[400px] bg-cyan-500/20 blur-[120px] rounded-full" />
 
 
-      {/* Main */}
-      <motion.div
-        initial={{ opacity: 0, y: 70 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="relative z-10 w-full max-w-6xl"
-      >
+      {/* Main Container */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto grid lg:grid-cols-[1.3fr_0.7fr] gap-8 xl:gap-16 items-center">
 
-        {/* Terminal */}
-        <div className="glass border border-white/10 rounded-[30px] overflow-hidden shadow-[0_0_80px_rgba(34,211,238,0.08)]">
+        {/* LEFT SIDE */}
+        <motion.div
+          initial={{ opacity: 0, x: -80 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          className="glass border border-white/10 rounded-[30px] overflow-hidden shadow-[0_0_80px_rgba(34,211,238,0.08)]"
+        >
 
-          {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/5">
+          <div className="p-8 md:p-16">
 
-            <div className="flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-400" />
-              <div className="w-3 h-3 rounded-full bg-yellow-400" />
-              <div className="w-3 h-3 rounded-full bg-green-400" />
-            </div>
+            {/* Terminal Header */}
+            <div className="flex items-center justify-between border-b border-white/10 pb-5 mb-8">
 
-            <p className="text-xs text-gray-400 font-mono">
-              muntasir-alam-resti.dev
-            </p>
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-400" />
+                <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                <div className="w-3 h-3 rounded-full bg-green-400" />
+              </div>
 
-          </div>
-
-          {/* Body */}
-          <div className="p-8 md:p-14">
-
-            <div className="font-mono space-y-6">
-                
-
-              <p className="text-gray-500">
-                // Frontend Developer
+              <p className="text-xs text-gray-400 font-mono">
+                muntasir-alam-resti.dev
               </p>
 
-              {/* Intro */}
-              <p className="text-cyan-400 text-sm md:text-xl">
+            </div>
+
+            {/* Hero Content */}
+            <div className="font-mono space-y-6">
+
+              {/* Small Intro */}
+              <p className="text-gray-500">
+                / Frontend Developer
+              </p>
+
+              {/* Hi */}
+              <p className="text-cyan-400 text-lg">
                 Hi, I'm
               </p>
 
               {/* Name */}
-              <h1 className="text-5xl md:text-7xl font-black tracking-[-0.05em] leading-none">
+              <h1 className="text-3xl md:text-4xl font-black tracking-[-0.05em] leading-none font-sans">
 
-                Muntasir Alam <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                Muntasir Alam  <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
                   Resti
                 </span>
 
@@ -138,9 +139,36 @@ export default function Hero() {
 
           </div>
 
-        </div>
+        </motion.div>
 
-      </motion.div>
+        {/* RIGHT SIDE */}
+        <motion.div
+          initial={{ opacity: 0, x: 80 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          className="relative flex justify-center"
+        >
+
+          {/* Glow Behind */}
+          <div className="absolute w-[350px] h-[350px] bg-cyan-500/20 blur-[120px] rounded-full" />
+
+          {/* Glass Image Card */}
+          <div className="relative glass border border-white/10 rounded-[30px] p-4 shadow-[0_0_80px_rgba(34,211,238,0.08)]">
+
+            <Image
+              src="/me.png"
+              alt="Developer"
+              width={380}
+              height={550}
+              priority
+              className="rounded-[24px] object-cover relative z-10"
+            />
+
+          </div>
+
+        </motion.div>
+
+      </div>
 
     </section>
   );
