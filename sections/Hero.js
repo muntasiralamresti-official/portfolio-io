@@ -10,6 +10,7 @@ import {
   FaLinkedin,
   FaTelegramPlane,
 } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -60,7 +61,7 @@ export default function Hero() {
 
               {/* Hi */}
               <p className="text-cyan-400 text-lg">
-                Hi, I'm
+                Hi, Im
               </p>
 
               {/* Name */}
@@ -97,11 +98,13 @@ export default function Hero() {
             {/* Buttons */}
             <div className="flex flex-wrap gap-5 mt-10">
 
+              <Link href="/projects">
               <button className="px-7 py-4 rounded-2xl bg-cyan-400 text-black font-semibold hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(34,211,238,0.35)]">
 
                 View Projects
 
               </button>
+              </Link>
 
               <button className="px-7 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl hover:bg-white/10 transition-all duration-300">
 
@@ -156,7 +159,7 @@ export default function Hero() {
           <div className="relative glass border border-white/10 rounded-[30px] p-4 shadow-[0_0_80px_rgba(34,211,238,0.08)]">
 
             <Image
-              src="/me.png"
+              src="/muntasir.png"
               alt="Developer"
               width={380}
               height={550}

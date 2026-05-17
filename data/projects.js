@@ -1,17 +1,33 @@
 export const projects = [
   {
-    title: "Modern SaaS Dashboard",
-    description:
-      "Premium futuristic admin dashboard UI.",
-    tech: ["Next.js", "Tailwind", "Framer Motion"],
-    image: "/projects/project1.jpg",
+    title: "Shopora E-Commerce",
+    desc: "Modern futuristic ecommerce website with immersive shopping experience and responsive UI.",
+    tech: ["React", "Next.js", "Tailwind"],
+    github: "#",
+    live: "#",
   },
 
   {
-    title: "AI Marketing Platform",
-    description:
-      "AI powered marketing automation platform.",
-    tech: ["React", "Firebase", "Node.js"],
-    image: "/projects/project2.jpg",
+    title: "Real Estate Platform",
+    desc: "Premium property listing platform with cinematic interface and modern layouts.",
+    tech: ["Next.js", "Framer Motion", "UI/UX"],
+    github: "#",
+    live: "#",
+  },
+
+  {
+    title: "Developer Portfolio",
+    desc: "Cyberpunk inspired portfolio website with futuristic animations and glassmorphism design.",
+    tech: ["React", "Tailwind", "Animation"],
+    github: "#",
+    live: "#",
+  },
+
+  {
+    title: "Educational Website",
+    desc: "Fully responsive educational institute website with modern sections and clean structure.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    github: "#",
+    live: "#",
   },
 ];
