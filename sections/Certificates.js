@@ -32,7 +32,7 @@ export default function Certificates() {
   return (
     <section
       id="certificates"
-      className="relative py-32 px-6 overflow-hidden"
+      className="relative pb-15 pt-10 px-6 overflow-hidden"
     >
 
       {/* Glow Effects */}

@@ -5,11 +5,11 @@ import Link from "next/link";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-28 px-6">
+    <section id="projects" className="pb-20 pt-10 px-6">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold gradient-text mb-12">
-          Projects
-        </h2>
+        <p className="text-cyan-400 font-mono mb-15 flex justify-center">
+            {"// Projects"}
+          </p>
 
         <div className="grid md:grid-cols-2 gap-10">
           {projects.slice(0, 2).map((project, i) => (
@@ -20,7 +20,7 @@ export default function Projects() {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-60 object-cover"
+                className="w-full h-100 object-cover"
               />
 
               <div className="p-8">
@@ -29,7 +29,7 @@ export default function Projects() {
                 </h3>
 
                 <p className="text-gray-400 mb-5">
-                  {project.description}
+                  {project.desc}
                 </p>
 
                 <div className="flex gap-3 flex-wrap mb-6">
@@ -44,14 +44,20 @@ export default function Projects() {
                 </div>
 
                 <div className="flex gap-4">
-                  <button className="px-5 py-3 bg-cyan-500 rounded-xl text-black font-semibold">
-                    Live Demo
-                  </button>
 
-                  <button className="px-5 py-3 border border-cyan-400 rounded-xl">
-                    GitHub
-                  </button>
-                </div>
+                   <a href={project.live} target="_blank" rel="noopener noreferrer" className=" px-5 py-3 bg-cyan-500 rounded-xl text-black font-semibold hover:scale-105 transition " >
+
+                     Live Demo
+
+                   </a>
+
+                   <a href={project.github} target="_blank" rel="noopener noreferrer" className=" px-5 py-3 border border-cyan-400 rounded-xl hover:bg-cyan-400/10 transition " >
+
+                     GitHub
+
+                   </a>
+
+                 </div>
               </div>
             </div>
           ))}

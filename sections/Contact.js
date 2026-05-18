@@ -66,7 +66,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-32 px-6 overflow-hidden"
+      className="relative py-20 px-6 overflow-hidden"
     >
 
       {/* Success Popup */}

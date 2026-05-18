@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden flex items-center justify-center px-6 pt-32 pb-20">
+    <section className="relative min-h-screen overflow-hidden flex items-center justify-center px-6 pt-32 pb-10">
 
       {/* Grid Background */}
       <div className="absolute inset-0 bg-grid opacity-20" />
@@ -24,7 +24,7 @@ export default function Hero() {
 
 
       {/* Main Container */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto grid lg:grid-cols-[1.3fr_0.7fr] gap-8 xl:gap-16 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto grid lg:grid-cols-[1.3fr_0.7fr] gap-8 xl:gap-16 items-center">
 
         {/* LEFT SIDE */}
         <motion.div

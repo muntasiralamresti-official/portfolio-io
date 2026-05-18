@@ -77,7 +77,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative py-32 px-6 overflow-hidden"
+      className="relative py-16 px-6 overflow-hidden"
     >
 
 

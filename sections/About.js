@@ -56,7 +56,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative py-32 px-6 overflow-hidden"
+      className="relative pt-8 pb-15 px-6 overflow-hidden"
     >
 
       {/* Glow Effects */}

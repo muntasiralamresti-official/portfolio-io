@@ -2,14 +2,16 @@ import "./globals.css";
 import { GeistSans } from "geist/font/sans";
 
 export const metadata = {
-  title: "Muntasir Resti | Frontend Developer",
+  title: "Muntasir Alam | Frontend Developer",
   description:
-    "Futuristic developer portfolio of Muntasir Resti",
+    "Frontend developer portfolio by Muntasir Alam Resti",
   keywords: [
     "Frontend Developer",
     "Next.js Developer",
     "React Developer",
     "UI UX Designer",
+    "WordPress Developer",
+    "Digital Marketer",
   ],
 };
 
