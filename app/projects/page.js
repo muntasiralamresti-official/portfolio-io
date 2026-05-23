@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-// import Image from "next/image";
-
 import { ArrowLeft } from "lucide-react";
 
 import {
@@ -25,7 +23,7 @@ export default function ProjectsPage() {
       "
     >
 
-      {/* Glow */}
+      {/* Glow Effects */}
       <div className="absolute top-0 left-0 w-[350px] h-[350px] bg-cyan-500/10 blur-[140px] rounded-full" />
 
       <div className="absolute bottom-0 right-0 w-[350px] h-[350px] bg-purple-500/10 blur-[140px] rounded-full" />
@@ -158,6 +156,9 @@ export default function ProjectsPage() {
 
                 backdrop-blur-2xl
 
+                flex
+                flex-col
+
                 hover:border-cyan-400/40
 
                 hover:-translate-y-2
@@ -177,9 +178,10 @@ export default function ProjectsPage() {
 
                   alt={project.title}
 
-                  
-
                   className="
+                    w-full
+                    h-full
+
                     object-cover
 
                     group-hover:scale-105
@@ -192,21 +194,23 @@ export default function ProjectsPage() {
               </div>
 
               {/* Content */}
-              <div className="p-7">
+              <div className="p-7 flex flex-col flex-1">
 
+                {/* Title */}
                 <h3 className="text-2xl font-bold mb-4 text-white">
 
                   {project.title}
 
                 </h3>
 
+                {/* Description */}
                 <p className="text-gray-400 leading-7 text-sm">
 
                   {project.desc}
 
                 </p>
 
-                {/* Tech */}
+                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-3 mt-6">
 
                   {project.tech.map((tech, index) => (
@@ -240,9 +244,13 @@ export default function ProjectsPage() {
 
                 </div>
 
-                {/* Buttons */}
-                <div className="flex gap-4 mt-8">
+                {/* Push Buttons Bottom */}
+                <div className="flex-1" />
 
+                {/* Buttons */}
+                <div className="flex items-center gap-4 mt-8">
+
+                  {/* Live Demo */}
                   <a
                     href={project.live}
 
@@ -275,6 +283,7 @@ export default function ProjectsPage() {
 
                   </a>
 
+                  {/* GitHub */}
                   <a
                     href={project.github}
 
@@ -284,6 +293,7 @@ export default function ProjectsPage() {
 
                     className="
                       w-14
+                      h-14
 
                       rounded-2xl
 
@@ -296,14 +306,17 @@ export default function ProjectsPage() {
                       items-center
                       justify-center
 
+                      text-white
+
                       hover:border-cyan-400/40
+                      hover:bg-cyan-400/10
 
                       transition
                       duration-300
                     "
                   >
 
-                    <FaGithub />
+                    <FaGithub size={20} />
 
                   </a>
 

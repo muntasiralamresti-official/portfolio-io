@@ -41,17 +41,17 @@ export const projects = [
   },
 
   {
-    title: "Developer Portfolio",
+    title: "Innovate Landing Website",
 
     desc:
-      "Cyberpunk inspired portfolio website with futuristic animations and glassmorphism design.",
+      "Clean and minimal business website concept",
 
-    image: "/projects/portfolio.png",
+    image: "/Innovate.png",
 
     tech: [
-      "React",
-      "Tailwind",
-      "Animation",
+      "Html",
+      "CSS",
+      "Boostrap",
     ],
 
     github: "#",

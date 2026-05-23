@@ -8,7 +8,7 @@ import Image from "next/image";
 import {
   FaGithub,
   FaLinkedin,
-  FaTelegramPlane,
+  FaDribbble,
 } from "react-icons/fa";
 import Link from "next/link";
 
@@ -118,24 +118,25 @@ export default function Hero() {
             <div className="flex gap-4 mt-12">
 
               <a
-                href="#"
+                href="https://github.com/muntasiralamresti-official"
                 className="w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300"
               >
                 <FaGithub size={18} color="white" />
               </a>
 
               <a
-                href="#"
+                href="https://www.linkedin.com/in/muntasir-alam-resti"
                 className="w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300"
               >
                 <FaLinkedin size={18} color="white" />
               </a>
 
+              
               <a
-                href="#"
+                href="https://dribbble.com/muntasir-alam-resti-"
                 className="w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300"
               >
-                <FaTelegramPlane size={18} color="white" />
+                <FaDribbble size={18} color="white" />
               </a>
 
             </div>
