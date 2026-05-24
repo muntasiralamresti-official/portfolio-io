@@ -563,7 +563,7 @@ export default function Contact() {
                   <FaLinkedin size={40} />,
 
                 link:
-                  "https://linkedin.com/",
+                  "https://www.linkedin.com/in/muntasir-alam-resti/",
               },
 
               {
@@ -571,7 +571,7 @@ export default function Contact() {
                   <FaDribbble size={40} />,
 
                 link:
-                  "https://dribbble.com/",
+                  "https://dribbble.com/muntasir-alam-resti-",
               },
 
             ].map((item, index) => (
