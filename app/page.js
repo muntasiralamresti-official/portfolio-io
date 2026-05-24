@@ -10,7 +10,6 @@ import Contact from "@/sections/Contact";
 
 import CursorGlow from "@/components/CursorGlow";
 import FloatingParticles from "@/components/FloatingParticles";
-import GithubContributions from "@/components/GithubContributions";
 
 export default function Home() {
   
@@ -25,7 +24,6 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
-      <GithubContributions />
       <Certificates />
       <Contact />
 
