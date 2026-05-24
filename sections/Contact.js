@@ -44,7 +44,7 @@ export default function Contact() {
 
       await fetch(
 
-        "https://script.google.com/macros/s/AKfycbxbjsYOU9KgmVfcMpAy_cbxNZMJnPFy9LCi6l05Lb8lIHmzE2pFLXLlFWsyWT7I3Bl2LQ/exec",
+        "https://script.google.com/macros/s/AKfycbx9uASGojkP87bvYcc4r5XFJ3OPn-G_6peb6-rYHzt404QiNTT0Hx-DPjbji1-npm1cpg/exec",
 
         {
           method: "POST",
