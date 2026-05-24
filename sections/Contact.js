@@ -42,50 +42,30 @@ export default function Contact() {
 
     try {
 
-      const res = await fetch(
+      await fetch(
 
         "https://script.google.com/macros/s/AKfycbw24bXL7WDeVyS8ttabO1RNN5dm5H-vvGyS0m85rvnnrJmdVKRvWJdIUAM5nFrIVgIxmg/exec",
 
         {
           method: "POST",
 
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
+          mode: "no-cors",
 
-          body:
-            JSON.stringify(formData),
+          body: JSON.stringify(formData),
         }
       );
 
-      const data = await res.json();
-
       setLoading(false);
 
-      if (data.success) {
+      setSuccess(true);
 
-        setSuccess(true);
+      e.target.reset();
 
-        e.target.reset();
+      setTimeout(() => {
 
-        setTimeout(() => {
+        setSuccess(false);
 
-          setSuccess(false);
-
-        }, 4000);
-
-      } else {
-
-        setError(true);
-
-        setTimeout(() => {
-
-          setError(false);
-
-        }, 4000);
-
-      }
+      }, 4000);
 
     } catch (err) {
 
