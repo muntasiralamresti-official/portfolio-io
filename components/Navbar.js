@@ -54,7 +54,7 @@ export default function Navbar() {
       {/* Navbar Container */}
       <div
         className="
-          max-w-7xl
+          container
           mx-auto
 
           mt-5

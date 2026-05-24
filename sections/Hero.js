@@ -1,207 +1,562 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { TypeAnimation } from "react-type-animation";
+import Link from "next/link";
 
 import Image from "next/image";
+
+import dynamic from "next/dynamic";
+
+import {
+  LazyMotion,
+  domAnimation,
+  m,
+} from "framer-motion";
 
 import {
   FaGithub,
   FaLinkedin,
   FaDribbble,
 } from "react-icons/fa";
-import Link from "next/link";
+
+/* Dynamic Type Animation */
+const TypeAnimation = dynamic(
+  () =>
+    import("react-type-animation").then(
+      (mod) => mod.TypeAnimation
+    ),
+
+  {
+    ssr: false,
+  }
+);
 
 export default function Hero() {
+
+  const socials = [
+
+    {
+      icon: <FaGithub size={18} />,
+
+      link:
+        "https://github.com/muntasiralamresti-official",
+
+      label:
+        "GitHub Profile",
+    },
+
+    {
+      icon: <FaLinkedin size={18} />,
+
+      link:
+        "https://www.linkedin.com/in/muntasir-alam-resti",
+
+      label:
+        "LinkedIn Profile",
+    },
+
+    {
+      icon: <FaDribbble size={18} />,
+
+      link:
+        "https://dribbble.com/muntasir-alam-resti-",
+
+      label:
+        "Dribbble Profile",
+    },
+
+  ];
+
   return (
-    <section className="relative min-h-screen overflow-hidden flex items-center justify-center px-6 pt-32 pb-10">
 
-      {/* Grid Background */}
-      <div className="absolute inset-0 bg-grid opacity-20" />
+    <LazyMotion features={domAnimation}>
 
-      {/* Glow Effects */}
-      <div className="absolute top-[-200px] left-[-100px] w-[400px] h-[400px] bg-cyan-500/20 blur-[120px] rounded-full" />
+      <section
+        className="
+          relative
 
+          min-h-screen
 
-      {/* Main Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto grid lg:grid-cols-[1.3fr_0.7fr] gap-8 xl:gap-16 items-center">
+          overflow-hidden
 
-        {/* LEFT SIDE */}
-        <motion.div
-          initial={{ opacity: 0, x: -80 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className="glass border border-white/10 rounded-[30px] overflow-hidden shadow-[0_0_80px_rgba(34,211,238,0.08)]"
+          flex
+          items-center
+          justify-center
+
+          px-6
+          pt-32
+          pb-10
+        "
+      >
+
+        {/* Grid Background */}
+        <div
+          aria-hidden="true"
+
+          className="
+            absolute
+            inset-0
+
+            bg-grid
+
+            opacity-20
+          "
+        />
+
+        {/* Glow */}
+        <div
+          aria-hidden="true"
+
+          className="
+            absolute
+
+            top-[-180px]
+            left-[-100px]
+
+            w-[300px]
+            h-[300px]
+
+            bg-cyan-500/10
+
+            blur-[70px]
+
+            rounded-full
+          "
+        />
+
+        {/* Main */}
+        <div
+          className="
+            relative
+            z-10
+
+            w-full
+
+            container
+            mx-auto
+
+            grid
+            lg:grid-cols-[1.3fr_0.7fr]
+
+            gap-8
+            xl:gap-16
+
+            items-center
+          "
         >
 
-          <div className="p-8 md:p-16">
+          {/* LEFT SIDE */}
+          <m.div
+            initial={{
+              opacity: 0,
+              x: -40,
+            }}
 
-            {/* Terminal Header */}
-            <div className="flex items-center justify-between border-b border-white/10 pb-5 mb-8">
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
 
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-400" />
-                <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                <div className="w-3 h-3 rounded-full bg-green-400" />
+            transition={{
+              duration: 0.7,
+            }}
+
+            className="
+              glass
+
+              border
+              border-white/10
+
+              rounded-[30px]
+
+              overflow-hidden
+
+              shadow-[0_0_25px_rgba(34,211,238,0.05)]
+            "
+          >
+
+            <div className="p-8 md:p-16">
+
+              {/* Terminal Header */}
+              <div
+                className="
+                  flex
+                  items-center
+                  justify-between
+
+                  border-b
+                  border-white/10
+
+                  pb-5
+                  mb-8
+                "
+              >
+
+                <div className="flex gap-2">
+
+                  <div
+                    aria-hidden="true"
+
+                    className="
+                      w-3
+                      h-3
+
+                      rounded-full
+
+                      bg-red-400
+                    "
+                  />
+
+                  <div
+                    aria-hidden="true"
+
+                    className="
+                      w-3
+                      h-3
+
+                      rounded-full
+
+                      bg-yellow-400
+                    "
+                  />
+
+                  <div
+                    aria-hidden="true"
+
+                    className="
+                      w-3
+                      h-3
+
+                      rounded-full
+
+                      bg-green-400
+                    "
+                  />
+
+                </div>
+
+                <p className="text-xs text-gray-400 font-mono">
+
+                  muntasir-alam-resti.dev
+
+                </p>
+
               </div>
 
-              <p className="text-xs text-gray-400 font-mono">
-                muntasir-alam-resti.dev
-              </p>
+              {/* Content */}
+              <div className="font-mono space-y-6">
 
-            </div>
+                {/* Small Intro */}
+                <p className="text-gray-400">
 
-            {/* Hero Content */}
-            <div className="font-mono space-y-6">
+                  / Frontend Developer
 
-              {/* Small Intro */}
-              <p className="text-gray-500">
-                / Frontend Developer
-              </p>
+                </p>
 
-              {/* Hi */}
-              <p className="text-cyan-400 text-lg">
-                Hi, Im
-              </p>
+                {/* Intro */}
+                <p className="text-cyan-400 text-lg">
 
-              {/* Name */}
-              <h1 className="text-3xl md:text-4xl font-black tracking-[-0.05em] leading-none font-sans">
+                  {"Hi, I'm"}
 
-                Muntasir Alam  <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                  Resti
-                </span>
+                </p>
 
-              </h1>
+                {/* Name */}
+                <h1
+                  className="
+                    text-4xl
+                    md:text-5xl
 
-              {/* Typing Animation */}
-              <div className="text-gray-400 text-lg md:text-2xl h-[40px]">
+                    font-black
 
-                <TypeAnimation
-                  sequence={[
-                    "A Frontend Developer",
-                    2000,
-                    "Learning Full Stack Web Development",
-                    2000,
-                    "Crafting Modern UI Experiences",
-                    2000,
-                    "React & Next.js Enthusiast",
-                    2000,
-                  ]}
-                  speed={50}
-                  repeat={Infinity}
-                />
+                    tracking-[-0.05em]
+
+                    leading-none
+
+                    font-sans
+                  "
+                >
+
+                  Muntasir Alam{" "}
+
+                  <span
+                    className="
+                      bg-gradient-to-r
+                      from-cyan-400
+                      to-purple-500
+
+                      bg-clip-text
+                      text-transparent
+                    "
+                  >
+
+                    Resti
+
+                  </span>
+
+                </h1>
+
+                {/* Typing */}
+                <div
+                  className="
+                    text-gray-300
+
+                    text-lg
+                    md:text-2xl
+
+                    min-h-[70px]
+                  "
+                >
+
+                  <TypeAnimation
+                    sequence={[
+                      "A Frontend Developer",
+                      1800,
+
+                      "Learning Full Stack Web Development",
+                      1800,
+
+                      "Crafting Modern UI Experiences",
+                      1800,
+
+                      "React & Next.js Enthusiast",
+                      1800,
+                    ]}
+
+                    speed={60}
+
+                    repeat={Infinity}
+                  />
+
+                </div>
+
+              </div>
+
+              {/* Buttons */}
+              <div className="flex flex-wrap gap-5 mt-10">
+
+                {/* Projects */}
+                <Link
+                  href="/projects"
+
+                  aria-label="View Projects"
+
+                  className="
+                    px-7
+                    py-4
+
+                    rounded-2xl
+
+                    bg-cyan-400
+
+                    text-black
+                    font-semibold
+
+                    hover:scale-[1.03]
+
+                    transition-all
+                    duration-300
+
+                    shadow-[0_0_20px_rgba(34,211,238,0.15)]
+                  "
+                >
+
+                  View Projects
+
+                </Link>
+
+                {/* Resume */}
+                <a
+                  href="/resume.pdf"
+
+                  target="_blank"
+
+                  rel="noopener noreferrer"
+
+                  aria-label="Open Resume"
+
+                  className="
+                    px-7
+                    py-4
+
+                    rounded-2xl
+
+                    border
+                    border-white/10
+
+                    bg-white/5
+
+                    backdrop-blur-sm
+
+                    hover:bg-white/10
+
+                    hover:scale-[1.03]
+
+                    transition-all
+                    duration-300
+
+                    inline-flex
+                    items-center
+                    justify-center
+
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-cyan-400
+                  "
+                >
+
+                  Resume
+
+                </a>
+
+              </div>
+
+              {/* Socials */}
+              <div className="flex gap-4 mt-12">
+
+                {socials.map((item, index) => (
+
+                  <a
+                    key={index}
+
+                    href={item.link}
+
+                    target="_blank"
+
+                    rel="noopener noreferrer"
+
+                    aria-label={item.label}
+
+                    className="
+                      w-12
+                      h-12
+
+                      rounded-xl
+
+                      border
+                      border-white/10
+
+                      bg-white/5
+
+                      flex
+                      items-center
+                      justify-center
+
+                      text-white
+
+                      hover:border-cyan-400
+
+                      hover:scale-105
+
+                      transition-all
+                      duration-300
+
+                      focus:outline-none
+                      focus:ring-2
+                      focus:ring-cyan-400
+                    "
+                  >
+
+                    {item.icon}
+
+                  </a>
+
+                ))}
 
               </div>
 
             </div>
 
-            {/* Buttons */}
-            <div className="flex flex-wrap gap-5 mt-10">
+          </m.div>
 
-              <Link href="/projects">
-              <button className="px-7 py-4 rounded-2xl bg-cyan-400 text-black font-semibold hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(34,211,238,0.35)]">
+          {/* RIGHT SIDE */}
+          <m.div
+            initial={{
+              opacity: 0,
+              x: 40,
+            }}
 
-                View Projects
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
 
-              </button>
-              </Link>
+            transition={{
+              duration: 0.7,
+            }}
 
-              <a
-  href="/resume.pdf"
-  target="_blank"
-  rel="noopener noreferrer"
+            className="
+              relative
 
-  className="
-    px-7
-    py-4
+              flex
+              justify-center
+            "
+          >
 
-    rounded-2xl
+            {/* Glow */}
+            <div
+              aria-hidden="true"
 
-    border
-    border-white/10
+              className="
+                absolute
 
-    bg-white/5
+                w-[250px]
+                h-[250px]
 
-    backdrop-blur-xl
+                bg-cyan-500/10
 
-    hover:bg-white/10
-    hover:scale-105
+                blur-[70px]
 
-    transition-all
-    duration-300
-
-    inline-flex
-    items-center
-    justify-center
-  "
->
-
-  Resume
-
-</a>
-
-            </div>
-
-            {/* Socials */}
-            <div className="flex gap-4 mt-12">
-
-              <a
-                href="https://github.com/muntasiralamresti-official"
-                className="w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300"
-              >
-                <FaGithub size={18} color="white" />
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/muntasir-alam-resti"
-                className="w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300"
-              >
-                <FaLinkedin size={18} color="white" />
-              </a>
-
-              
-              <a
-                href="https://dribbble.com/muntasir-alam-resti-"
-                className="w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300"
-              >
-                <FaDribbble size={18} color="white" />
-              </a>
-
-            </div>
-
-          </div>
-
-        </motion.div>
-
-        {/* RIGHT SIDE */}
-        <motion.div
-          initial={{ opacity: 0, x: 80 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className="relative flex justify-center"
-        >
-
-          {/* Glow Behind */}
-          <div className="absolute w-[350px] h-[350px] bg-cyan-500/20 blur-[120px] rounded-full" />
-
-          {/* Glass Image Card */}
-          <div className="relative glass border border-white/10 rounded-[30px] p-4 shadow-[0_0_80px_rgba(34,211,238,0.08)]">
-
-            <Image
-              src="/muntasir.png"
-              alt="Developer"
-              width={380}
-              height={550}
-              priority
-              className="rounded-[24px] object-cover relative z-10"
+                rounded-full
+              "
             />
 
-          </div>
+            {/* Image Card */}
+            <div
+              className="
+                relative
 
-        </motion.div>
+                glass
 
-      </div>
+                border
+                border-white/10
 
-    </section>
+                rounded-[30px]
+
+                p-4
+
+                shadow-[0_0_25px_rgba(34,211,238,0.05)]
+              "
+            >
+
+              <Image
+                src="/muntasir.png"
+
+                alt="Muntasir Alam Resti"
+
+                width={380}
+
+                height={550}
+
+                priority
+
+                className="
+                  rounded-[24px]
+
+                  object-cover
+
+                  relative
+                  z-10
+                "
+              />
+
+            </div>
+
+          </m.div>
+
+        </div>
+
+      </section>
+
+    </LazyMotion>
+
   );
 }

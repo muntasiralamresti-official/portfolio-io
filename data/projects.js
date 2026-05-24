@@ -6,7 +6,7 @@ export const projects = [
     desc:
       "Modern futuristic ecommerce website with immersive shopping experience and responsive UI.",
 
-    image: "/shopora-banner.png",
+    image: "/shopora.png",
 
     tech: [
       "React",

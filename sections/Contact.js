@@ -213,7 +213,7 @@ export default function Contact() {
       </AnimatePresence>
 
       {/* Main */}
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto">
 
         {/* Header */}
         <motion.div

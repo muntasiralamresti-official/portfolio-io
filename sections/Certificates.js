@@ -2,6 +2,14 @@
 
 import Link from "next/link";
 
+import Image from "next/image";
+
+import {
+  LazyMotion,
+  domAnimation,
+  m,
+} from "framer-motion";
+
 import {
   ArrowLeft,
   ExternalLink,
@@ -45,255 +53,340 @@ export default function CertificatesPage() {
 
   return (
 
-    <section
-      className="
-        relative
-        min-h-screen
+    <LazyMotion features={domAnimation}>
 
-        overflow-hidden
+      <section
+        className="
+          relative
+          min-h-screen
 
-        py-16
-        px-6
-      "
-    >
+          overflow-hidden
 
+          py-16
+          px-6
+        "
+      >
 
-      {/* Main */}
-      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Main */}
+        <div className="relative z-10 container mx-auto">
 
-        {/* Header */}
-        <div className="text-center mb-20">
+          {/* Header */}
+          <m.header
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
 
-          <p className="text-cyan-400 font-mono mb-4">
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
 
-            {"// Certificates"}
+            transition={{
+              duration: 0.7,
+            }}
 
-          </p>
-
-          <h1 className="text-5xl md:text-7xl font-black leading-tight">
-
-            Learning &
-            <span className="gradient-text">
-
-              {" "}Achievements
-
-            </span>
-
-          </h1>
-
-          <p
-            className="
-              text-gray-400
-
-              max-w-3xl
-              mx-auto
-
-              mt-6
-
-              text-lg
-              leading-8
-            "
+            className="text-center mb-20"
           >
 
-            A collection of certifications and
-            creative learning milestones reflecting
-            my journey in digital marketing and
-            UI/UX design.
+            <p className="text-cyan-400 font-mono mb-4">
 
-          </p>
+              {"// Certificates"}
 
-        </div>
+            </p>
 
-        {/* Grid */}
-        <div
-          className="
-            grid
-            md:grid-cols-2
+            <h1 className="text-5xl md:text-7xl font-black leading-tight">
 
-            gap-8
-          "
-        >
+              Learning &
+              <span className="gradient-text">
 
-          {certificates.map((item, index) => (
+                {" "}Achievements
 
-            <div
-              key={index}
+              </span>
 
+            </h1>
+
+            <p
               className="
-                group
-                relative
+                text-gray-300
 
-                overflow-hidden
+                max-w-3xl
+                mx-auto
 
-                rounded-[30px]
+                mt-6
 
-                border
-                border-white/10
-
-                bg-white/[0.03]
-
-                backdrop-blur-2xl
-
-                hover:border-cyan-400/40
-
-                hover:-translate-y-2
-
-                hover:shadow-[0_0_60px_rgba(34,211,238,0.12)]
-
-                transition-all
-                duration-500
+                text-lg
+                leading-8
               "
             >
 
-              {/* Image */}
-              <div className="relative h-[260px] overflow-hidden">
+              A collection of certifications and
+              creative learning milestones reflecting
+              my journey in digital marketing and
+              UI/UX design.
 
-                <img
-                  src={item.image}
+            </p>
 
-                  alt={item.title}
+          </m.header>
 
-                  className="
-                    w-full
-                    h-full
+          {/* Grid */}
+          <div
+            className="
+              grid
+              md:grid-cols-2
 
-                    object-cover
+              gap-8
+            "
+          >
 
-                    group-hover:scale-105
+            {certificates.map((item, index) => (
 
-                    transition
-                    duration-700
-                  "
-                />
+              <m.article
+                key={index}
 
-              </div>
+                initial={{
+                  opacity: 0,
+                  y: 40,
+                }}
 
-              {/* Content */}
-              <div className="p-8">
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
 
-                {/* Top */}
-                <div className="flex items-center justify-between mb-5">
+                viewport={{
+                  once: true,
+                }}
 
-                  <span
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                }}
+
+                whileHover={{
+                  y: -6,
+                }}
+
+                className="
+                  group
+                  relative
+
+                  overflow-hidden
+
+                  rounded-[30px]
+
+                  border
+                  border-white/10
+
+                  bg-white/[0.03]
+
+                  backdrop-blur-sm
+
+                  hover:border-cyan-400/40
+
+                  hover:shadow-[0_0_30px_rgba(34,211,238,0.10)]
+
+                  transition-all
+                  duration-300
+                "
+              >
+
+                {/* Image */}
+                <div
+  className="
+    relative
+
+    w-full
+
+    h-[340px]
+
+    md:h-[420px]
+
+    overflow-hidden
+  "
+>
+
+  <Image
+    src={item.image}
+
+    alt={item.title}
+
+    fill
+
+    sizes="
+      (max-width: 768px) 100vw,
+      50vw
+    "
+
+    className="
+      object-cover
+
+      group-hover:scale-[1.03]
+
+      transition
+      duration-500
+    "
+  />
+
+</div>
+
+                {/* Content */}
+                <div className="p-8">
+
+                  {/* Top */}
+                  <div
                     className="
-                      px-4
-                      py-2
+                      flex
+                      items-center
+                      justify-between
 
-                      rounded-full
-
-                      border
-                      border-cyan-400/30
-
-                      bg-cyan-400/10
-
-                      text-cyan-400
-
-                      text-xs
-                      font-mono
+                      mb-5
                     "
                   >
 
-                    {item.issuer}
+                    <span
+                      className="
+                        px-4
+                        py-2
 
-                  </span>
+                        rounded-full
 
-                  <span className="text-gray-500 text-sm">
+                        border
+                        border-cyan-400/30
 
-                    {item.year}
+                        bg-cyan-400/10
 
-                  </span>
+                        text-cyan-400
 
-                </div>
+                        text-xs
+                        font-mono
+                      "
+                    >
 
-                {/* Title */}
-                <h3 className="text-2xl font-bold mb-4 text-white">
+                      {item.issuer}
 
-                  {item.title}
+                    </span>
 
-                </h3>
+                    <span className="text-gray-400 text-sm">
 
-                {/* Desc */}
-                <p className="text-gray-400 leading-8">
+                      {item.year}
 
-                  {item.desc}
+                    </span>
 
-                </p>
+                  </div>
 
-                {/* Bottom */}
-                <div
-                  className="
-                    mt-8
+                  {/* Title */}
+                  <h2
+                    className="
+                      text-2xl
+                      font-bold
 
-                    flex
-                    items-center
-                    justify-between
-                  "
-                >
+                      mb-4
 
+                      text-white
+                    "
+                  >
+
+                    {item.title}
+
+                  </h2>
+
+                  {/* Description */}
+                  <p
+                    className="
+                      text-gray-300
+
+                      leading-8
+                    "
+                  >
+
+                    {item.desc}
+
+                  </p>
+
+                  {/* Bottom */}
                   <div
                     className="
-                      h-[1px]
-                      flex-1
-
-                      bg-gradient-to-r
-                      from-cyan-400/40
-                      via-purple-500/40
-                      to-transparent
-                    "
-                  />
-
-                  {/* View Certificate */}
-                  <a
-                    href={item.certificate}
-
-                    target="_blank"
-
-                    rel="noopener noreferrer"
-
-                    className="
-                      ml-5
-
-                      w-12
-                      h-12
-
-                      rounded-2xl
-
-                      border
-                      border-white/10
-
-                      bg-white/5
+                      mt-8
 
                       flex
                       items-center
-                      justify-center
-
-                      text-cyan-400
-
-                      hover:border-cyan-400/40
-                      hover:bg-cyan-400/10
-                      hover:scale-105
-
-                      transition-all
-                      duration-300
+                      justify-between
                     "
                   >
 
-                    <ExternalLink size={18} />
+                    <div
+                      aria-hidden="true"
 
-                  </a>
+                      className="
+                        h-[1px]
+                        flex-1
+
+                        bg-gradient-to-r
+                        from-cyan-400/40
+                        via-purple-500/40
+                        to-transparent
+                      "
+                    />
+
+                    {/* View Certificate */}
+                    <a
+                      href={item.certificate}
+
+                      target="_blank"
+
+                      rel="noopener noreferrer"
+
+                      aria-label={`View ${item.title} Certificate`}
+
+                      className="
+                        ml-5
+
+                        w-12
+                        h-12
+
+                        rounded-2xl
+
+                        border
+                        border-white/10
+
+                        bg-white/5
+
+                        flex
+                        items-center
+                        justify-center
+
+                        text-cyan-400
+
+                        hover:border-cyan-400/40
+                        hover:bg-cyan-400/10
+
+                        hover:scale-105
+
+                        transition-all
+                        duration-300
+                      "
+                    >
+
+                      <ExternalLink size={18} />
+
+                    </a>
+
+                  </div>
 
                 </div>
 
-              </div>
+              </m.article>
 
-            </div>
+            ))}
 
-          ))}
+          </div>
 
         </div>
 
-      </div>
+      </section>
 
-    </section>
+    </LazyMotion>
+
   );
 }

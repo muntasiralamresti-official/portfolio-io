@@ -63,7 +63,7 @@ export default function About() {
 
 
       {/* Main */}
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 container mx-auto">
 
         {/* Header */}
         <motion.div
