@@ -282,43 +282,50 @@ export default function ProjectsPage() {
                     Live Demo
 
                   </a>
+                  
+                 {/* GitHub */}
+{project.github &&
+  project.github !== "#" && (
 
-                  {/* GitHub */}
-                  <a
-                    href={project.github}
+  <a
+    href={project.github}
 
-                    target="_blank"
+    target="_blank"
 
-                    rel="noopener noreferrer"
+    rel="noopener noreferrer"
 
-                    className="
-                      w-14
-                      h-14
+    className="
+      w-14
+      h-14
 
-                      rounded-2xl
+      rounded-2xl
 
-                      border
-                      border-white/10
+      border
+      border-white/10
 
-                      bg-white/5
+      bg-white/5
 
-                      flex
-                      items-center
-                      justify-center
+      flex
+      items-center
+      justify-center
 
-                      text-white
+      text-white
 
-                      hover:border-cyan-400/40
-                      hover:bg-cyan-400/10
+      hover:border-cyan-400/40
+      hover:bg-cyan-400/10
 
-                      transition
-                      duration-300
-                    "
-                  >
+      hover:scale-105
 
-                    <FaGithub size={20} />
+      transition
+      duration-300
+    "
+  >
 
-                  </a>
+    <FaGithub size={20} />
+
+  </a>
+
+)}
 
                 </div>
 

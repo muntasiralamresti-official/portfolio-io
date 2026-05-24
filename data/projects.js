@@ -27,17 +27,14 @@ export const projects = [
     desc:
       "Premium property listing platform with cinematic interface and modern layouts.",
 
-    image: "/real-estate.png",
+    image: "/Elan-Estates.png",
 
     tech: [
-      "Next.js",
-      "Framer Motion",
-      "UI/UX",
+      "Figma",
+      "UI",
     ],
 
-    github: "#",
-
-    live: "#",
+    live: "https://dribbble.com/shots/26922498-Luxury-Real-Estate-Website-UI-Design",
   },
 
   {
@@ -54,28 +51,28 @@ export const projects = [
       "Boostrap",
     ],
 
-    github: "#",
+    github: "https://github.com/muntasiralamresti-official/innovate",
 
-    live: "#",
+    live: "https://innovate-mun.vercel.app/",
   },
 
   {
-    title: "Educational Website",
+    title: "Social Media Website",
 
     desc:
-      "Fully responsive educational institute website with modern sections and clean structure.",
+      "Social media UI concept with API integration.",
 
-    image: "/projects/education.png",
+    image: "/perpl-x.png",
 
     tech: [
-      "HTML",
-      "CSS",
-      "JavaScript",
+      "Tailwind",
+      "Next.JS",
+      "Api",
     ],
 
-    github: "#",
+    github: "https://github.com/muntasiralamresti-official/purpl-x",
 
-    live: "#",
+    live: "",
   },
 
 ];

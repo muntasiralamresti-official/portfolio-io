@@ -106,11 +106,39 @@ export default function Hero() {
               </button>
               </Link>
 
-              <button className="px-7 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl hover:bg-white/10 transition-all duration-300">
+              <a
+  href="/resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
 
-                Contact Me
+  className="
+    px-7
+    py-4
 
-              </button>
+    rounded-2xl
+
+    border
+    border-white/10
+
+    bg-white/5
+
+    backdrop-blur-xl
+
+    hover:bg-white/10
+    hover:scale-105
+
+    transition-all
+    duration-300
+
+    inline-flex
+    items-center
+    justify-center
+  "
+>
+
+  Resume
+
+</a>
 
             </div>
 
