@@ -22,19 +22,22 @@ export const projects = [
   },
 
   {
-    title: "Real Estate Platform",
+    title: "Purpl-x Website",
 
     desc:
-      "Premium property listing platform with cinematic interface and modern layouts.",
+      "Social media UI concept with API integration.",
 
-    image: "/Elan-Estates.png",
+    image: "/perpl-x.png",
 
     tech: [
-      "Figma",
-      "UI",
+      "Tailwind",
+      "Next.JS",
+      "Api",
     ],
 
-    live: "https://dribbble.com/shots/26922498-Luxury-Real-Estate-Website-UI-Design",
+    github: "https://github.com/muntasiralamresti-official/purpl-x",
+
+    live: "https://purpl-x.vercel.app/",
   },
 
   {
@@ -57,22 +60,40 @@ export const projects = [
   },
 
   {
-    title: "Social Media Website",
+    title: "Fashion Brand Landing Website",
 
     desc:
-      "Social media UI concept with API integration.",
+      "Clean and minimal Fashion website concept",
 
-    image: "/perpl-x.png",
+    image: "/fashion-brand.png",
 
     tech: [
-      "Tailwind",
-      "Next.JS",
-      "Api",
+      "Html",
+      "CSS",
     ],
 
-    github: "https://github.com/muntasiralamresti-official/purpl-x",
+    github: "https://github.com/muntasiralamresti-official/Fashion-Brand",
 
-    live: "",
+    live: "https://fashion-brand-neon.vercel.app/",
+  },
+
+
+
+  
+  {
+    title: "Real Estate Platform",
+
+    desc:
+      "Premium property listing platform with cinematic interface and modern layouts.",
+
+    image: "/Elan-Estates.png",
+
+    tech: [
+      "Figma",
+      "UI",
+    ],
+
+    live: "https://dribbble.com/shots/26922498-Luxury-Real-Estate-Website-UI-Design",
   },
 
 ];
