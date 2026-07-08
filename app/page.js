@@ -9,14 +9,14 @@ import Certificates from "@/sections/Certificates";
 import Contact from "@/sections/Contact";
 
 import CursorGlow from "@/components/CursorGlow";
-import FloatingParticles from "@/components/FloatingParticles";
+import NetworkBackground from "@/components/NetworkBackground";
 
 export default function Home() {
   
   return (
-    <main className="bg-[#050816] text-white overflow-hidden">
+    <main className="relative w-full h-full">
       <CursorGlow />
-      <FloatingParticles />
+      <NetworkBackground />
 
       <Navbar />
 

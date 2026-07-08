@@ -1,105 +1,107 @@
 @import "tailwindcss";
 
+@theme {
+  --color-purple: #7c3aed;
+  --color-blue: #3b82f6;
+  --color-purple-light: #e9e5ff;
+}
+
+:root {
+  /* Light Theme - Default */
+  --bg-primary: #fafafa;
+  --bg-secondary: #f4f4f8;
+  --text-primary: #1e1e2e;
+  --text-secondary: #4b5563;
+  --accent: #7c3aed; /* Purple */
+  --accent-secondary: #3b82f6; /* Blue */
+  --accent-muted: rgba(124, 58, 237, 0.08);
+  --border-color: #e9e5ff; /* Light purple border */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --card-bg: #ffffff;
+  
+  --gradient-1: rgba(124, 58, 237, 0.04);
+  --gradient-2: rgba(59, 130, 246, 0.04);
+}
+
+.dark {
+  /* Dark Theme Variant */
+  --bg-primary: #0f1117;
+  --bg-secondary: #1a1d27;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent: #8b5cf6; /* Lighter Purple */
+  --accent-secondary: #60a5fa; /* Lighter Blue */
+  --accent-muted: rgba(139, 92, 246, 0.1);
+  --border-color: rgba(139, 92, 246, 0.2);
+  --glass-bg: rgba(15, 17, 23, 0.7);
+  --card-bg: #1a1d27;
+
+  --gradient-1: rgba(139, 92, 246, 0.05);
+  --gradient-2: rgba(96, 165, 250, 0.05);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background:
-    radial-gradient(circle at top left,
-      rgba(0,255,255,0.10),
-      transparent 25%),
-
-    radial-gradient(circle at bottom right,
-      rgba(168,85,247,0.12),
-      transparent 25%),
-
-    #050816;
-
-  color: white;
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at top left, var(--gradient-1), transparent 30%),
+    radial-gradient(circle at bottom right, var(--gradient-2), transparent 30%);
+  color: var(--text-primary);
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Glass Effect */
+/* Base Utility Classes */
 .glass {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Grid Background */
-.bg-grid {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-
-  background-size: 40px 40px;
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Glow Shadow */
-.glow {
-  box-shadow:
-    0 0 20px rgba(0,255,255,0.3),
-    0 0 40px rgba(168,85,247,0.2);
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.08);
 }
 
-/* Fade Animation */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.gradient-text {
+  background: linear-gradient(to right, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
-.animate-fadeUp {
-  animation: fadeUp 0.8s ease forwards;
-}
-/* Background Grid */
-.bg-grid {
-  background-image:
-    linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
-
-  background-size: 50px 50px;
+.gradient-bg {
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
 }
 
-/* Floating Particles */
-.particle {
-  width: 3px;
-  height: 3px;
-
-  background: #00d9ff;
-
-  border-radius: 9999px;
-
-  box-shadow:
-    0 0 10px #00d9ff,
-    0 0 20px rgba(0,217,255,0.5);
-
-  opacity: 0.7;
-
-  animation: floatParticle 6s infinite ease-in-out;
+/* Scroll Reveal Utilities */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: opacity, transform;
 }
 
-@keyframes floatParticle {
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
 
-  0% {
-    transform: translateY(0px);
-    opacity: 0.3;
-  }
-
-  50% {
-    transform: translateY(-20px);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(0px);
-    opacity: 0.3;
-  }
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }

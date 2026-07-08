@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import { GeistSans } from "geist/font/sans";
+import { ThemeProvider } from "../components/ThemeProvider";
 
 export const metadata = {
 
@@ -139,15 +140,16 @@ export default function RootLayout({
 
     <html
       lang="en"
-
       suppressHydrationWarning
     >
 
       <body
-        className={GeistSans.className}
+        className={`${GeistSans.className} transition-colors`}
       >
 
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
 
       </body>
 

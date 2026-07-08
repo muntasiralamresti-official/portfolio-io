@@ -1,562 +1,106 @@
 "use client";
 
 import Link from "next/link";
-
 import Image from "next/image";
-
 import dynamic from "next/dynamic";
+import { FaGithub, FaLinkedin, FaDribbble } from "react-icons/fa";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
-import {
-  LazyMotion,
-  domAnimation,
-  m,
-} from "framer-motion";
-
-import {
-  FaGithub,
-  FaLinkedin,
-  FaDribbble,
-} from "react-icons/fa";
-
-/* Dynamic Type Animation */
 const TypeAnimation = dynamic(
-  () =>
-    import("react-type-animation").then(
-      (mod) => mod.TypeAnimation
-    ),
-
-  {
-    ssr: false,
-  }
+  () => import("react-type-animation").then((mod) => mod.TypeAnimation),
+  { ssr: false }
 );
 
 export default function Hero() {
-
+  const containerRef = useScrollReveal();
+  
   const socials = [
-
-    {
-      icon: <FaGithub size={18} />,
-
-      link:
-        "https://github.com/muntasiralamresti-official",
-
-      label:
-        "GitHub Profile",
-    },
-
-    {
-      icon: <FaLinkedin size={18} />,
-
-      link:
-        "https://www.linkedin.com/in/muntasir-alam-resti",
-
-      label:
-        "LinkedIn Profile",
-    },
-
-    {
-      icon: <FaDribbble size={18} />,
-
-      link:
-        "https://dribbble.com/muntasir-alam-resti-",
-
-      label:
-        "Dribbble Profile",
-    },
-
+    { icon: <FaGithub size={16} />, link: "https://github.com/muntasiralamresti-official", label: "GitHub" },
+    { icon: <FaLinkedin size={16} />, link: "https://www.linkedin.com/in/muntasir-alam-resti", label: "LinkedIn" },
+    { icon: <FaDribbble size={16} />, link: "https://dribbble.com/muntasir-alam-resti-", label: "Dribbble" },
   ];
 
   return (
-
-    <LazyMotion features={domAnimation}>
-
-      <section
-        className="
-          relative
-
-          min-h-screen
-
-          overflow-hidden
-
-          flex
-          items-center
-          justify-center
-
-          px-6
-          pt-32
-          pb-10
-        "
-      >
-
-        {/* Grid Background */}
-        <div
-          aria-hidden="true"
-
-          className="
-            absolute
-            inset-0
-
-            bg-grid
-
-            opacity-20
-          "
-        />
-
-        {/* Glow */}
-        <div
-          aria-hidden="true"
-
-          className="
-            absolute
-
-            top-[-180px]
-            left-[-100px]
-
-            w-[300px]
-            h-[300px]
-
-            bg-cyan-500/10
-
-            blur-[70px]
-
-            rounded-full
-          "
-        />
-
-        {/* Main */}
-        <div
-          className="
-            relative
-            z-10
-
-            w-full
-
-            container
-            mx-auto
-
-            grid
-            lg:grid-cols-[1.3fr_0.7fr]
-
-            gap-8
-            xl:gap-16
-
-            items-center
-          "
-        >
-
-          {/* LEFT SIDE */}
-          <m.div
-            initial={{
-              opacity: 0,
-              x: -40,
-            }}
-
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-
-            transition={{
-              duration: 0.7,
-            }}
-
-            className="
-              glass
-
-              border
-              border-white/10
-
-              rounded-[30px]
-
-              overflow-hidden
-
-              shadow-[0_0_25px_rgba(34,211,238,0.05)]
-            "
-          >
-
-            <div className="p-8 md:p-16">
-
-              {/* Terminal Header */}
-              <div
-                className="
-                  flex
-                  items-center
-                  justify-between
-
-                  border-b
-                  border-white/10
-
-                  pb-5
-                  mb-8
-                "
-              >
-
-                <div className="flex gap-2">
-
-                  <div
-                    aria-hidden="true"
-
-                    className="
-                      w-3
-                      h-3
-
-                      rounded-full
-
-                      bg-red-400
-                    "
-                  />
-
-                  <div
-                    aria-hidden="true"
-
-                    className="
-                      w-3
-                      h-3
-
-                      rounded-full
-
-                      bg-yellow-400
-                    "
-                  />
-
-                  <div
-                    aria-hidden="true"
-
-                    className="
-                      w-3
-                      h-3
-
-                      rounded-full
-
-                      bg-green-400
-                    "
-                  />
-
-                </div>
-
-                <p className="text-xs text-gray-400 font-mono">
-
-                  muntasir-alam-resti.dev
-
-                </p>
-
-              </div>
-
-              {/* Content */}
-              <div className="font-mono space-y-6">
-
-                {/* Small Intro */}
-                <p className="text-gray-400">
-
-                  / Frontend Developer
-
-                </p>
-
-                {/* Intro */}
-                <p className="text-cyan-400 text-lg">
-
-                  {"Hi, I'm"}
-
-                </p>
-
-                {/* Name */}
-                <h1
-                  className="
-                    text-4xl
-                    md:text-5xl
-
-                    font-black
-
-                    tracking-[-0.05em]
-
-                    leading-none
-
-                    font-sans
-                  "
-                >
-
-                  Muntasir Alam{" "}
-
-                  <span
-                    className="
-                      bg-gradient-to-r
-                      from-cyan-400
-                      to-purple-500
-
-                      bg-clip-text
-                      text-transparent
-                    "
-                  >
-
-                    Resti
-
-                  </span>
-
-                </h1>
-
-                {/* Typing */}
-                <div
-                  className="
-                    text-gray-300
-
-                    text-lg
-                    md:text-2xl
-
-                    min-h-[70px]
-                  "
-                >
-
-                  <TypeAnimation
-                    sequence={[
-                      "A Frontend Developer",
-                      1800,
-
-                      "Learning Full Stack Web Development",
-                      1800,
-
-                      "Crafting Modern UI Experiences",
-                      1800,
-
-                      "React & Next.js Enthusiast",
-                      1800,
-                    ]}
-
-                    speed={60}
-
-                    repeat={Infinity}
-                  />
-
-                </div>
-
-              </div>
-
-              {/* Buttons */}
-              <div className="flex flex-wrap gap-5 mt-10">
-
-                {/* Projects */}
-                <Link
-                  href="/projects"
-
-                  aria-label="View Projects"
-
-                  className="
-                    px-7
-                    py-4
-
-                    rounded-2xl
-
-                    bg-cyan-400
-
-                    text-black
-                    font-semibold
-
-                    hover:scale-[1.03]
-
-                    transition-all
-                    duration-300
-
-                    shadow-[0_0_20px_rgba(34,211,238,0.15)]
-                  "
-                >
-
-                  View Projects
-
-                </Link>
-
-                {/* Resume */}
-                <a
-                  href="/Resume.pdf"
-
-                  target="_blank"
-
-                  rel="noopener noreferrer"
-
-                  aria-label="Open Resume"
-
-                  className="
-                    px-7
-                    py-4
-
-                    rounded-2xl
-
-                    border
-                    border-white/10
-
-                    bg-white/5
-
-                    backdrop-blur-sm
-
-                    hover:bg-white/10
-
-                    hover:scale-[1.03]
-
-                    transition-all
-                    duration-300
-
-                    inline-flex
-                    items-center
-                    justify-center
-
-                    focus:outline-none
-                    focus:ring-2
-                    focus:ring-cyan-400
-                  "
-                >
-
-                  Resume
-
-                </a>
-
-              </div>
-
-              {/* Socials */}
-              <div className="flex gap-4 mt-12">
-
-                {socials.map((item, index) => (
-
-                  <a
-                    key={index}
-
-                    href={item.link}
-
-                    target="_blank"
-
-                    rel="noopener noreferrer"
-
-                    aria-label={item.label}
-
-                    className="
-                      w-12
-                      h-12
-
-                      rounded-xl
-
-                      border
-                      border-white/10
-
-                      bg-white/5
-
-                      flex
-                      items-center
-                      justify-center
-
-                      text-white
-
-                      hover:border-cyan-400
-
-                      hover:scale-105
-
-                      transition-all
-                      duration-300
-
-                      focus:outline-none
-                      focus:ring-2
-                      focus:ring-cyan-400
-                    "
-                  >
-
-                    {item.icon}
-
-                  </a>
-
-                ))}
-
-              </div>
-
-            </div>
-
-          </m.div>
-
-          {/* RIGHT SIDE */}
-          <m.div
-            initial={{
-              opacity: 0,
-              x: 40,
-            }}
-
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-
-            transition={{
-              duration: 0.7,
-            }}
-
-            className="
-              relative
-
-              flex
-              justify-center
-            "
-          >
-
-            {/* Glow */}
-            <div
-              aria-hidden="true"
-
-              className="
-                absolute
-
-                w-[250px]
-                h-[250px]
-
-                bg-cyan-500/10
-
-                blur-[70px]
-
-                rounded-full
-              "
-            />
-
-            {/* Image Card */}
-            <div
-              className="
-                relative
-
-                glass
-
-                border
-                border-white/10
-
-                rounded-[30px]
-
-                p-4
-
-                shadow-[0_0_25px_rgba(34,211,238,0.05)]
-              "
-            >
-
-              <Image
-                src="/muntasir.png"
-
-                alt="Muntasir Alam Resti"
-
-                width={380}
-
-                height={550}
-
-                priority
-
-                className="
-                  rounded-[24px]
-
-                  object-cover
-
-                  relative
-                  z-10
-                "
+    <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 pb-12 overflow-hidden bg-[var(--bg-primary)]">
+      
+      <div ref={containerRef} className="relative z-10 w-full max-w-6xl mx-auto grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
+        
+        {/* LEFT SIDE */}
+        <div className="relative p-8 md:p-12 lg:p-16 rounded-[24px] bg-[var(--card-bg)] shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-[var(--border-color)]">
+          {/* Decorative Blob */}
+          <div className="absolute -top-20 -left-20 w-64 h-64 bg-gradient-to-tr from-[var(--accent)] to-[var(--accent-secondary)] rounded-full blur-[100px] opacity-[0.15] pointer-events-none"></div>
+
+          <div className="space-y-4">
+            <p className="text-[var(--text-secondary)] font-mono text-sm uppercase tracking-widest font-semibold">
+              <span className="gradient-text">Welcome</span>
+            </p>
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-[var(--text-primary)] leading-[1.1]">
+              Hi, I'm <br />
+              <span className="gradient-text">Muntasir</span> Resti
+            </h1>
+
+            <div className="text-[var(--text-secondary)] text-lg md:text-xl h-[60px] flex items-center mt-4 font-medium">
+              <TypeAnimation
+                sequence={[
+                  "Frontend Developer", 2000,
+                  "UI/UX Designer", 2000,
+                  "Full Stack Learner", 2000,
+                ]}
+                speed={50}
+                repeat={Infinity}
+                wrapper="span"
+                cursor={true}
+                className="gradient-text"
               />
-
             </div>
+          </div>
 
-          </m.div>
+          <div className="flex flex-wrap items-center gap-4 mt-10">
+            <Link
+              href="#projects"
+              className="px-6 py-3 rounded-full gradient-bg text-white font-bold text-sm shadow-md shadow-[var(--accent-muted)] hover:shadow-lg hover:-translate-y-0.5 transition-all"
+            >
+              View Projects
+            </Link>
+            <Link
+              href="#contact"
+              className="px-6 py-3 rounded-full border-2 border-[var(--border-color)] text-[var(--accent)] bg-white font-semibold text-sm hover:bg-[var(--accent-muted)] hover:border-[var(--accent)] hover:-translate-y-0.5 transition-all"
+            >
+              Contact Me
+            </Link>
+          </div>
 
+          <div className="flex items-center gap-3 mt-10 pt-6 border-t border-[var(--border-color)]">
+            <span className="text-xs text-[var(--text-secondary)] font-semibold uppercase tracking-wider mr-2">Connect:</span>
+            {socials.map((item, index) => (
+              <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={item.label}
+                className="w-10 h-10 rounded-full border border-[var(--border-color)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--accent)] hover:bg-[var(--accent-muted)] hover:-translate-y-0.5 transition-all shadow-sm"
+              >
+                {item.icon}
+              </a>
+            ))}
+          </div>
         </div>
 
-      </section>
-
-    </LazyMotion>
-
+        {/* RIGHT SIDE */}
+        <div className="relative flex justify-center lg:justify-end">
+          <div className="relative w-[280px] md:w-[340px] aspect-[4/5] rounded-[24px] overflow-hidden border border-[var(--border-color)] bg-[var(--card-bg)] shadow-[0_8px_40px_rgba(0,0,0,0.04)]">
+            <Image
+              src="/muntasir.png"
+              alt="Muntasir Alam Resti"
+              fill
+              priority
+              className="object-cover relative z-10 p-2 rounded-[24px]"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
