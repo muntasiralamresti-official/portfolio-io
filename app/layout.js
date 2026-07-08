@@ -2,6 +2,7 @@ import "./globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "../components/ThemeProvider";
+import KonamiEaster from "../components/KonamiEaster";
 
 export const metadata = {
 
@@ -13,32 +14,18 @@ export const metadata = {
     "Muntasir Alam Resti | Frontend Developer",
 
   description:
-    "Official portfolio of Muntasir Alam Resti, a frontend developer skilled in React, Next.js, Tailwind CSS and UI/UX Design.",
+    "Official portfolio of Muntasir Alam Resti, featuring a highly optimized, GitHub-inspired developer aesthetic.",
 
   keywords: [
-
     "Muntasir Alam Resti",
-
     "Muntasir Alam",
-
     "Muntasir Resti",
-
     "Frontend Developer",
-
     "Next.js Developer",
-
     "React Developer",
-
-    "Tailwind CSS",
-
+    "GitHub Profile Portfolio",
     "UI UX Designer",
-
-    "WordPress Developer",
-
-    "Digital Marketer",
-
     "Bangladesh Frontend Developer",
-
   ],
 
   authors: [
@@ -60,7 +47,7 @@ export const metadata = {
       "Muntasir Alam Resti | Frontend Developer",
 
     description:
-      "Frontend developer portfolio showcasing modern web experiences and UI systems.",
+      "Frontend developer portfolio showcasing a unique GitHub-styled interface.",
 
     url:
       "https://muntasiralamresti.vercel.app",
@@ -78,7 +65,7 @@ export const metadata = {
 
       {
         url:
-          "/og-image.png",
+          "/og-image.jpg",
 
         width: 1200,
 
@@ -101,10 +88,10 @@ export const metadata = {
       "Muntasir Alam Resti | Frontend Developer",
 
     description:
-      "Frontend developer portfolio built with Next.js and Tailwind CSS.",
+      "Frontend developer portfolio featuring a live GitHub-inspired UI.",
 
     images: [
-      "/og-image.png",
+      "/og-image.jpg",
     ],
 
   },
@@ -149,6 +136,7 @@ export default function RootLayout({
 
         <ThemeProvider>
           {children}
+          <KonamiEaster />
         </ThemeProvider>
 
       </body>
