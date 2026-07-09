@@ -6,6 +6,12 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 export default function Readme() {
   const containerRef = useScrollReveal();
 
+  const skills = {
+    "Frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS", "JavaScript (ES6+)", "HTML5", "CSS3"],
+    "Backend": ["Node.js", "Express.js", "MongoDB", "REST APIs"],
+    "Tools & Platforms": ["Git", "GitHub", "Vercel", "Figma", "VS Code"],
+  };
+
   return (
     <section id="readme" ref={containerRef} className="mb-8">
       
@@ -40,7 +46,33 @@ export default function Readme() {
             <p>🌱 <strong>Currently learning:</strong> Full Stack Development (Node.js, Express, MongoDB) & Next.js Advanced Patterns.</p>
             <p>👯 <strong>Looking to collaborate on:</strong> Open-source frontend projects and modern web applications.</p>
             <p>💬 <strong>Ask me about:</strong> React, Next.js, Tailwind CSS, and UI/UX Design principles.</p>
-            <p>⚡ <strong>Fun fact:</strong> I obsessed over performance so much that I built this portfolio to perfectly mirror a GitHub profile without using heavy animation libraries!</p>
+            <p>🎯 <strong>Career goal:</strong> To become a well-rounded Full Stack Developer while mastering scalable frontend architecture.</p>
+            <p>⚙️ <strong>Philosophy:</strong> Clean code, thoughtful UX, and performance-first development — no shortcuts.</p>
+            <p>💼 <strong>Open to:</strong> Freelance projects, full-time roles, and collaborative frontend engineering opportunities.</p>
+          </div>
+
+          {/* Skills Section */}
+          <div>
+            <h3 className="text-[16px] font-semibold mb-4">🛠️ Skills</h3>
+            <div className="space-y-4">
+              {Object.entries(skills).map(([category, items]) => (
+                <div key={category}>
+                  <p className="text-[13px] font-medium text-[var(--text-secondary)] mb-2">
+                    {category}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {items.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 text-[12px] font-medium rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:border-[#0969da] hover:text-[#0969da] transition-colors"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div>

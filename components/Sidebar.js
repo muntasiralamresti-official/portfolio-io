@@ -75,11 +75,11 @@ export default function Sidebar() {
               priority
             />
             {/* PRO Badge overlay on image */}
-            <div className="absolute bottom-[8%] left-[12%] hidden lg:flex">
+            {/* <div className="absolute bottom-[8%] left-[12%] hidden lg:flex">
               <span className="px-2 py-0.5 rounded-full border border-[var(--border-color)] bg-[var(--bg-primary)] text-[12px] font-semibold text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors cursor-default shadow-sm">
                 PRO
               </span>
-            </div>
+            </div> */}
           </div>
           <div className="lg:mt-4">
             <h1 className="text-2xl lg:text-[26px] font-semibold text-[var(--text-primary)] leading-tight">
@@ -157,7 +157,7 @@ export default function Sidebar() {
           <h3 className="font-semibold text-[16px] text-[var(--text-primary)] mb-3">Highlights</h3>
           <div className="flex flex-wrap gap-2">
             {["React", "Next.js", "Tailwind CSS", "UI/UX", "JavaScript"].map((tag) => (
-              <span key={tag} className="px-2.5 py-1 text-xs font-medium bg-[var(--accent)] bg-opacity-10 text-[var(--accent)] rounded-full border border-[var(--accent)] border-opacity-20 hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">
+              <span key={tag} className="px-2.5 py-1 text-xs font-medium bg-[var(--accent)] bg-opacity-10 text-black rounded-full border border-[var(--accent)] border-opacity-20 hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">
                 {tag}
               </span>
             ))}

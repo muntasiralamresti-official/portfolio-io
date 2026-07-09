@@ -1,55 +1,73 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 
 const KONAMI = [
-  "ArrowUp","ArrowUp",
-  "ArrowDown","ArrowDown",
-  "ArrowLeft","ArrowRight",
-  "ArrowLeft","ArrowRight",
-  "b","a"
+  "arrowup", "arrowup",
+  "arrowdown", "arrowdown",
+  "arrowleft", "arrowright",
+  "arrowleft", "arrowright",
+  "b", "a"
 ];
 
 const MATRIX_CHARS = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ01";
 
 export default function KonamiEaster() {
-  const [active, setActive]   = useState(false);
+  const [active, setActive] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [cols, setCols]       = useState([]);
+  const [cols, setCols] = useState([]);
+  const sequenceRef = useRef([]);
 
-  /* ── Key listener ── */
+  /* ── Key listener (fix: case-insensitive matching) ── */
   useEffect(() => {
-    let sequence = [];
     const onKey = (e) => {
-      sequence.push(e.key);
-      if (sequence.length > KONAMI.length) sequence.shift();
+      const key = e.key.toLowerCase();
+      sequenceRef.current.push(key);
+      if (sequenceRef.current.length > KONAMI.length) {
+        sequenceRef.current.shift();
+      }
 
-      const matched = KONAMI.every((k, i) => sequence[sequence.length - KONAMI.length + i] === k);
+      const matched = KONAMI.every(
+        (k, i) =>
+          sequenceRef.current[sequenceRef.current.length - KONAMI.length + i] === k
+      );
+
       if (matched) {
         setActive(true);
-        sequence = [];
+        sequenceRef.current = [];
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  /* ── Build matrix rain columns ── */
+  /* ── Build matrix rain columns + body scroll lock ── */
   useEffect(() => {
     if (!active) return;
 
-    const count = Math.floor(window.innerWidth / 18);
-    setCols(
-      Array.from({ length: count }, (_, i) => ({
-        id: i,
-        delay: Math.random() * 2,
-        duration: 1.5 + Math.random() * 3,
-        chars: Array.from({ length: 20 }, () =>
-          MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)]
-        ).join(""),
-        left: i * 18,
-      }))
-    );
+    // fix: lock background scroll while overlay is open
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    // fix: respect prefers-reduced-motion — skip heavy rain animation
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (!prefersReducedMotion) {
+      const count = Math.floor(window.innerWidth / 18);
+      setCols(
+        Array.from({ length: count }, (_, i) => ({
+          id: i,
+          delay: Math.random() * 2,
+          duration: 1.5 + Math.random() * 3,
+          chars: Array.from({ length: 20 }, () =>
+            MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)]
+          ).join(""),
+          left: i * 18,
+        }))
+      );
+    }
 
     /* progress bar */
     let p = 0;
@@ -59,7 +77,10 @@ export default function KonamiEaster() {
       if (p >= 100) clearInterval(iv);
     }, 40);
 
-    return () => clearInterval(iv);
+    return () => {
+      clearInterval(iv);
+      document.body.style.overflow = originalOverflow;
+    };
   }, [active]);
 
   /* ── Dismiss ── */
@@ -71,7 +92,9 @@ export default function KonamiEaster() {
 
   useEffect(() => {
     if (!active) return;
-    const onEsc = (e) => { if (e.key === "Escape") dismiss(); };
+    const onEsc = (e) => {
+      if (e.key === "Escape") dismiss();
+    };
     window.addEventListener("keydown", onEsc);
     return () => window.removeEventListener("keydown", onEsc);
   }, [active, dismiss]);
@@ -80,6 +103,9 @@ export default function KonamiEaster() {
 
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Konami code easter egg activated"
       className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center overflow-hidden cursor-pointer"
       onClick={dismiss}
     >
@@ -145,8 +171,8 @@ export default function KonamiEaster() {
         </div>
       </div>
 
-      {/* Keyframe styles */}
-      <style>{`
+      {/* fix: styled-jsx used instead of plain <style>, prevents duplicate tag injection on re-activation */}
+      <style jsx global>{`
         @keyframes matrixFall {
           0%   { transform: translateY(-100%); opacity: 1; }
           80%  { opacity: 0.7; }

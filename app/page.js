@@ -9,7 +9,7 @@ import Contact from "@/sections/Contact";
 
 import Readme from "@/sections/Readme";
 import ContributionGraph from "@/components/ContributionGraph";
-import TechStack from "@/sections/TechStack";
+// import TechStack from "@/sections/TechStack";
 import ActivityFeed from "@/sections/ActivityFeed";
 
 export default function Home() {
@@ -44,9 +44,9 @@ export default function Home() {
               <ActivityFeed />
             </div>
             
-            <div className="mb-10 border-t border-[var(--border-color)] pt-6">
+            {/* <div className="mb-10 border-t border-[var(--border-color)] pt-6">
               <TechStack />
-            </div>
+            </div> */}
 
             <div className="mb-10 border-t border-[var(--border-color)] pt-6">
               <Skills />
