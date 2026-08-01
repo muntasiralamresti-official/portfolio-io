@@ -5,9 +5,11 @@ import { FaGithub } from "react-icons/fa";
 export default function ProjectCard({ project }) {
   const getLanguageColor = (tech) => {
     const techLower = tech.toLowerCase();
-    if (techLower.includes("react") || techLower.includes("next")) return "#61dafb";
+    if (techLower.includes("react") || techLower.includes("next"))
+      return "#61dafb";
     if (techLower.includes("javascript")) return "#f1e05a";
-    if (techLower.includes("tailwind") || techLower.includes("css")) return "#563d7c";
+    if (techLower.includes("tailwind") || techLower.includes("css"))
+      return "#563d7c";
     if (techLower.includes("html")) return "#e34c26";
     return "#8b949e";
   };
@@ -20,9 +22,12 @@ export default function ProjectCard({ project }) {
     return Math.abs(hash) % max;
   };
 
-  const primaryLanguage = project.tech && project.tech.length > 0 ? project.tech[0] : "JavaScript";
-  const stars = getDeterministicNumber((project.title || "repo") + "stars", 50) + 1;
-  const forks = getDeterministicNumber((project.title || "repo") + "forks", 20) + 1;
+  const primaryLanguage =
+    project.tech && project.tech.length > 0 ? project.tech[0] : "JavaScript";
+  const stars =
+    getDeterministicNumber((project.title || "repo") + "stars", 50) + 1;
+  const forks =
+    getDeterministicNumber((project.title || "repo") + "forks", 20) + 1;
 
   return (
     <article className="gh-card flex h-full flex-col overflow-hidden bg-[var(--card-bg)] shadow-[var(--shadow-soft)] transition-transform duration-200 hover:-translate-y-1 hover:shadow-[var(--shadow-strong)]">
@@ -36,7 +41,9 @@ export default function ProjectCard({ project }) {
           />
         ) : (
           <div className="flex h-full items-center justify-center bg-[var(--bg-primary)] text-[var(--text-secondary)]">
-            <span className="text-sm uppercase tracking-[0.18em]">Project preview</span>
+            <span className="text-sm uppercase tracking-[0.18em]">
+              Project preview
+            </span>
           </div>
         )}
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-4">
@@ -57,7 +64,9 @@ export default function ProjectCard({ project }) {
           >
             {project.title}
           </a>
-          <p className="text-sm leading-6 text-[var(--text-secondary)]">{project.desc}</p>
+          <p className="text-sm leading-6 text-[var(--text-secondary)]">
+            {project.desc}
+          </p>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -73,7 +82,10 @@ export default function ProjectCard({ project }) {
 
         <div className="grid gap-3 border-t border-[var(--border-color)] pt-4 text-[13px] text-[var(--text-secondary)] sm:grid-cols-2">
           <div className="flex items-center gap-2">
-            <span className="inline-flex h-3 w-3 rounded-full" style={{ backgroundColor: getLanguageColor(primaryLanguage) }} />
+            <span
+              className="inline-flex h-3 w-3 rounded-full"
+              style={{ backgroundColor: getLanguageColor(primaryLanguage) }}
+            />
             <span>{primaryLanguage}</span>
           </div>
           <div className="flex items-center gap-4">

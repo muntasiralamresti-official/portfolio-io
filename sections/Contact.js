@@ -32,7 +32,7 @@ export default function Contact() {
           method: "POST",
           mode: "no-cors",
           body: JSON.stringify(formData),
-        }
+        },
       );
       setLoading(false);
       setSuccess(true);
@@ -58,46 +58,81 @@ export default function Contact() {
                 Ready to turn an idea into a polished product?
               </h2>
               <p className="mt-3 max-w-xl text-[15px] leading-7 text-[var(--text-secondary)]">
-                I&apos;m available for freelance work, product collaborations, and thoughtful frontend builds that feel as good as they perform.
+                I&apos;m available for freelance work, product collaborations,
+                and thoughtful frontend builds that feel as good as they
+                perform.
               </p>
             </div>
 
             <div className="rounded-[24px] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
               <div className="flex items-center gap-3">
                 <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[var(--border-color)] bg-[var(--bg-primary)]">
-                  <Image src="/muntasir.png" alt="Muntasir Alam Resti" fill className="object-cover" />
+                  <Image
+                    src="/muntasir.png"
+                    alt="Muntasir Alam Resti"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-[var(--text-primary)]">Open for select opportunities</p>
-                  <p className="text-sm text-[var(--text-secondary)]">Fast turnarounds for MVPs and polished product launches</p>
+                  <p className="text-sm font-semibold text-[var(--text-primary)]">
+                    Open for select opportunities
+                  </p>
+                  <p className="text-sm text-[var(--text-secondary)]">
+                    Fast turnarounds for MVPs and polished product launches
+                  </p>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <a href="mailto:contact@muntasiralamresti.dev" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)]">
+              <a
+                href="mailto:contact@muntasiralamresti.dev"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)]"
+              >
                 <Mail size={16} /> Email me
               </a>
-              <a href="https://www.linkedin.com/in/muntasir-alam-resti" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)]">
+              <a
+                href="https://www.linkedin.com/in/muntasir-alam-resti"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)]"
+              >
                 <FaLinkedin size={15} /> LinkedIn
               </a>
-              <a href="https://github.com/muntasiralamresti-official" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)]">
+              <a
+                href="https://github.com/muntasiralamresti-official"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)]"
+              >
                 <FaGithub size={15} /> GitHub
               </a>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--text-secondary)]">Availability</p>
-                <p className="mt-1 text-sm font-semibold text-[var(--text-primary)]">1–2 weeks for product-ready builds</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--text-secondary)]">
+                  Availability
+                </p>
+                <p className="mt-1 text-sm font-semibold text-[var(--text-primary)]">
+                  1–2 weeks for product-ready builds
+                </p>
               </div>
               <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--text-secondary)]">Focus</p>
-                <p className="mt-1 text-sm font-semibold text-[var(--text-primary)]">Fast UI, strong UX, clear product decisions</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--text-secondary)]">
+                  Focus
+                </p>
+                <p className="mt-1 text-sm font-semibold text-[var(--text-primary)]">
+                  Fast UI, strong UX, clear product decisions
+                </p>
               </div>
             </div>
 
-            <Link href="/case-studies" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]">
+            <Link
+              href="/case-studies"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]"
+            >
               <Sparkles size={15} /> Explore a couple of featured case studies
               <ArrowRight size={15} />
             </Link>
@@ -117,7 +152,10 @@ export default function Contact() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="rounded-[24px] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-5">
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-[24px] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-5"
+            >
               <div className="grid gap-4 md:grid-cols-2">
                 <input
                   type="text"
@@ -147,8 +185,14 @@ export default function Contact() {
               />
 
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-                <p className="text-sm text-[var(--text-secondary)]">I typically reply within 1–2 business days.</p>
-                <button type="submit" disabled={loading} className="gh-btn-primary rounded-full px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-70">
+                <p className="text-sm text-[var(--text-secondary)]">
+                  I typically reply within 1–2 business days.
+                </p>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="gh-btn-primary rounded-full px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-70"
+                >
                   {loading ? "Sending..." : "Send message"}
                 </button>
               </div>
