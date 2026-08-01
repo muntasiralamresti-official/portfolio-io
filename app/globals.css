@@ -1,66 +1,102 @@
 @import "tailwindcss";
 
 :root {
-  /* GitHub Light Theme Palette */
   --bg-primary: #ffffff;
   --bg-secondary: #f6f8fa;
-  --bg-tertiary: #f6f8fa; /* For hover states */
+  --bg-tertiary: #f6f8fa;
   --border-color: #d0d7de;
   --border-muted: #e5e7eb;
   --text-primary: #1f2328;
   --text-secondary: #59636e;
   --accent: #0969da;
+  --accent-secondary: #7c3aed;
+  --accent-muted: rgba(9, 105, 218, 0.12);
+  --card-bg: #ffffff;
   --success: #1f883d;
   --success-light: #2da44e;
-  
-  /* Graph Colors */
   --graph-0: #ebedf0;
   --graph-1: #9be9a8;
   --graph-2: #40c463;
   --graph-3: #30a14e;
   --graph-4: #216e39;
-
   --radius-sm: 4px;
   --radius-md: 6px;
-  --radius-lg: 8px;
+  --radius-lg: 12px;
+  --shadow-soft: 0 12px 40px rgba(15, 23, 42, 0.06);
+  --shadow-strong: 0 24px 80px rgba(15, 23, 42, 0.12);
 }
 
 .dark {
-  /* GitHub Dark Theme Palette (for toggle consistency) */
-  --bg-primary: #0d1117;
-  --bg-secondary: #010409;
-  --bg-tertiary: #161b22;
-  --border-color: #30363d;
-  --border-muted: #21262d;
+  --bg-primary: #0b1020;
+  --bg-secondary: #111827;
+  --bg-tertiary: #161f31;
+  --border-color: #2f3b52;
+  --border-muted: #243244;
   --text-primary: #e6edf3;
-  --text-secondary: #848d97;
-  --accent: #2f81f7;
+  --text-secondary: #94a3b8;
+  --accent: #60a5fa;
+  --accent-secondary: #a78bfa;
+  --accent-muted: rgba(96, 165, 250, 0.16);
+  --card-bg: #0f172a;
   --success: #238636;
   --success-light: #2ea043;
-  
-  /* Graph Colors */
   --graph-0: #161b22;
   --graph-1: #0e4429;
   --graph-2: #006d32;
   --graph-3: #26a641;
   --graph-4: #39d353;
+  --shadow-soft: 0 16px 50px rgba(2, 8, 23, 0.28);
+  --shadow-strong: 0 28px 90px rgba(2, 8, 23, 0.35);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* offset for sticky header */
+  scroll-padding-top: 80px;
 }
 
 body {
   background-color: var(--bg-primary);
+  background-image:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 8%, transparent), transparent 35%),
+    radial-gradient(circle at bottom right, color-mix(in srgb, var(--accent-secondary) 9%, transparent), transparent 38%);
   color: var(--text-primary);
   overflow-x: hidden;
   transition: background-color 0.15s ease, color 0.15s ease;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* GitHub Style Common Elements */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  width: 26rem;
+  height: 26rem;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  top: -8rem;
+  left: -6rem;
+  background: var(--accent);
+}
+
+body::after {
+  bottom: -8rem;
+  right: -6rem;
+  background: var(--accent-secondary);
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
 .gh-border {
   border: 1px solid var(--border-color);
 }
@@ -70,14 +106,17 @@ body {
 }
 
 .gh-card {
-  background-color: var(--bg-primary);
+  background-color: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  transition: border-color 0.2s ease;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .gh-card:hover {
-  border-color: var(--text-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+  border-color: var(--accent);
 }
 
 .gh-btn-primary {
@@ -85,8 +124,8 @@ body {
   color: #ffffff !important;
   border: 1px solid rgba(27, 31, 36, 0.15);
   border-radius: var(--radius-md);
-  font-weight: 500;
-  transition: background-color 0.2s;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
 }
 
 .gh-btn-primary:hover {
@@ -98,8 +137,8 @@ body {
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  font-weight: 500;
-  transition: background-color 0.2s;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
 }
 
 .gh-btn-secondary:hover {
@@ -119,17 +158,59 @@ body {
   box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
 }
 
-/* Scroll Reveal Utilities */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+}
+
 .reveal-hidden {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(16px) scale(0.98);
   will-change: opacity, transform;
 }
 
 .reveal-visible {
   opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.section-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+}
+
+.divider-pill {
+  position: relative;
+  z-index: 1;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
 }
 
 .transition-colors {
@@ -138,7 +219,6 @@ body {
   transition-duration: 150ms;
 }
 
-/* Timeline specific */
 .timeline-item::before {
   content: "";
   position: absolute;

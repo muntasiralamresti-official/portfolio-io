@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
+// import Hero from "@/sections/Hero";
+import SectionDivider from "@/components/SectionDivider";
 
 import Projects from "@/sections/Projects";
 import Experience from "@/sections/Experience";
@@ -9,57 +11,51 @@ import Contact from "@/sections/Contact";
 
 import Readme from "@/sections/Readme";
 import ContributionGraph from "@/components/ContributionGraph";
-// import TechStack from "@/sections/TechStack";
 import ActivityFeed from "@/sections/ActivityFeed";
 
 export default function Home() {
   return (
-    <main className="relative w-full min-h-screen bg-[var(--bg-primary)]">
-      
-      {/* Top Navbar */}
+    <main className="relative min-h-screen w-full bg-[var(--bg-primary)]">
       <Navbar />
 
-      <div className="container mx-auto px-4 md:px-6 pt-6 pb-12 max-w-[1280px]">
-        
-        {/* Responsive Grid Layout */}
-        <div className="flex flex-col lg:flex-row gap-8">
-          
-          {/* Left Sidebar (Sticky on Desktop) */}
+      {/* <Hero /> */}
+
+      <div className="container mx-auto max-w-[1280px] px-4 pb-12 pt-6 md:px-6">
+        <div className="flex flex-col gap-8 lg:flex-row">
           <Sidebar />
 
-          {/* Right Main Content Stream */}
-          <div className="flex-1 min-w-0">
-            
+          <div className="min-w-0 flex-1">
             <Readme />
 
-            <div className="mb-8 border-t border-[var(--border-color)] pt-6">
+            <SectionDivider label="Activity" />
+            <div className="mb-8 pt-2">
               <ContributionGraph />
             </div>
 
-            <div className="mb-10 border-t border-[var(--border-color)] pt-6">
+            <SectionDivider label="Projects" />
+            <div className="mb-10 pt-2">
               <Projects />
             </div>
-            
-            <div className="mb-10 border-t border-[var(--border-color)] pt-6">
+
+            <SectionDivider label="Updates" />
+            <div className="mb-10 pt-2">
               <ActivityFeed />
             </div>
-            
-            {/* <div className="mb-10 border-t border-[var(--border-color)] pt-6">
-              <TechStack />
-            </div> */}
 
-            <div className="mb-10 border-t border-[var(--border-color)] pt-6">
+            <SectionDivider label="Skills" />
+            <div className="mb-10 pt-2">
               <Skills />
             </div>
 
-            <div className="mb-10 border-t border-[var(--border-color)] pt-6">
+            <SectionDivider label="Experience" />
+            <div className="mb-10 pt-2">
               <Experience />
             </div>
 
-            <div className="mb-10 border-t border-[var(--border-color)] pt-6">
+            <SectionDivider label="Contact" />
+            <div className="mb-10 pt-2">
               <Contact />
             </div>
-            
           </div>
         </div>
       </div>

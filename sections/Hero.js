@@ -1,106 +1,121 @@
-"use client";
+// "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import dynamic from "next/dynamic";
-import { FaGithub, FaLinkedin, FaDribbble } from "react-icons/fa";
-import { useScrollReveal } from "../hooks/useScrollReveal";
+// import Link from "next/link";
+// import Image from "next/image";
+// import dynamic from "next/dynamic";
+// import { ArrowRight } from "lucide-react";
+// import { useScrollReveal } from "../hooks/useScrollReveal";
 
-const TypeAnimation = dynamic(
-  () => import("react-type-animation").then((mod) => mod.TypeAnimation),
-  { ssr: false }
-);
+// const TypeAnimation = dynamic(
+//   () => import("react-type-animation").then((mod) => mod.TypeAnimation),
+//   { ssr: false }
+// );
 
-export default function Hero() {
-  const containerRef = useScrollReveal();
-  
-  const socials = [
-    { icon: <FaGithub size={16} />, link: "https://github.com/muntasiralamresti-official", label: "GitHub" },
-    { icon: <FaLinkedin size={16} />, link: "https://www.linkedin.com/in/muntasir-alam-resti", label: "LinkedIn" },
-    { icon: <FaDribbble size={16} />, link: "https://dribbble.com/muntasir-alam-resti-", label: "Dribbble" },
-  ];
+// export default function Hero() {
+//   const containerRef = useScrollReveal();
 
-  return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 pb-12 overflow-hidden bg-[var(--bg-primary)]">
-      
-      <div ref={containerRef} className="relative z-10 w-full max-w-6xl mx-auto grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
-        
-        {/* LEFT SIDE */}
-        <div className="relative p-8 md:p-12 lg:p-16 rounded-[24px] bg-[var(--card-bg)] shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-[var(--border-color)]">
-          {/* Decorative Blob */}
-          <div className="absolute -top-20 -left-20 w-64 h-64 bg-gradient-to-tr from-[var(--accent)] to-[var(--accent-secondary)] rounded-full blur-[100px] opacity-[0.15] pointer-events-none"></div>
+//   return (
+//     <section className="relative overflow-hidden px-4 py-10 md:px-6 md:py-14" ref={containerRef}>
+//       <div className="relative mx-auto max-w-[1300px] overflow-hidden rounded-[36px] border border-[var(--border-color)] bg-[var(--card-bg)] shadow-[var(--shadow-soft)]">
+//         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.16),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(168,85,247,0.16),_transparent_32%)]" />
 
-          <div className="space-y-4">
-            <p className="text-[var(--text-secondary)] font-mono text-sm uppercase tracking-widest font-semibold">
-              <span className="gradient-text">Welcome</span>
-            </p>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-[var(--text-primary)] leading-[1.1]">
-              Hi, I'm <br />
-              <span className="gradient-text">Muntasir</span> Resti
-            </h1>
+//         <div className="relative z-10 grid gap-10 px-6 py-10 md:grid-cols-[1.05fr_0.95fr] md:px-10 lg:px-14">
+//           <div className="space-y-8">
+//             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.3em] text-[var(--text-secondary)]">
+//               Premium frontend systems
+//             </div>
 
-            <div className="text-[var(--text-secondary)] text-lg md:text-xl h-[60px] flex items-center mt-4 font-medium">
-              <TypeAnimation
-                sequence={[
-                  "Frontend Developer", 2000,
-                  "UI/UX Designer", 2000,
-                  "Full Stack Learner", 2000,
-                ]}
-                speed={50}
-                repeat={Infinity}
-                wrapper="span"
-                cursor={true}
-                className="gradient-text"
-              />
-            </div>
-          </div>
+//             <div className="space-y-5">
+//               <h1 className="text-4xl font-black leading-[0.95] tracking-[-0.04em] text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
+//                 I build premium web interfaces for bold brands.
+//               </h1>
 
-          <div className="flex flex-wrap items-center gap-4 mt-10">
-            <Link
-              href="#projects"
-              className="px-6 py-3 rounded-full gradient-bg text-white font-bold text-sm shadow-md shadow-[var(--accent-muted)] hover:shadow-lg hover:-translate-y-0.5 transition-all"
-            >
-              View Projects
-            </Link>
-            <Link
-              href="#contact"
-              className="px-6 py-3 rounded-full border-2 border-[var(--border-color)] text-[var(--accent)] bg-white font-semibold text-sm hover:bg-[var(--accent-muted)] hover:border-[var(--accent)] hover:-translate-y-0.5 transition-all"
-            >
-              Contact Me
-            </Link>
-          </div>
+//               <div className="text-[1.15rem] font-semibold leading-snug text-[var(--text-secondary)] md:text-2xl">
+//                 <TypeAnimation
+//                   sequence={[
+//                     "High-conversion product pages", 2000,
+//                     "Responsive SaaS dashboards", 2000,
+//                     "Fast, polished brand experiences", 2000,
+//                   ]}
+//                   speed={50}
+//                   repeat={Infinity}
+//                   wrapper="span"
+//                   cursor={false}
+//                   className="gradient-text"
+//                 />
+//               </div>
 
-          <div className="flex items-center gap-3 mt-10 pt-6 border-t border-[var(--border-color)]">
-            <span className="text-xs text-[var(--text-secondary)] font-semibold uppercase tracking-wider mr-2">Connect:</span>
-            {socials.map((item, index) => (
-              <a
-                key={index}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={item.label}
-                className="w-10 h-10 rounded-full border border-[var(--border-color)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--accent)] hover:bg-[var(--accent-muted)] hover:-translate-y-0.5 transition-all shadow-sm"
-              >
-                {item.icon}
-              </a>
-            ))}
-          </div>
-        </div>
+//               <p className="max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
+//                 I turn product ideas into fast, modern frontends with intuitive navigation, elegant visuals, and clean engineering.
+//               </p>
+//             </div>
 
-        {/* RIGHT SIDE */}
-        <div className="relative flex justify-center lg:justify-end">
-          <div className="relative w-[280px] md:w-[340px] aspect-[4/5] rounded-[24px] overflow-hidden border border-[var(--border-color)] bg-[var(--card-bg)] shadow-[0_8px_40px_rgba(0,0,0,0.04)]">
-            <Image
-              src="/muntasir.png"
-              alt="Muntasir Alam Resti"
-              fill
-              priority
-              className="object-cover relative z-10 p-2 rounded-[24px]"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+//             <div className="flex flex-wrap gap-4">
+//               <Link
+//                 href="#projects"
+//                 className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[rgba(9,105,218,0.24)] transition-all hover:-translate-y-0.5"
+//               >
+//                 View projects
+//                 <ArrowRight size={16} />
+//               </Link>
+//               <Link
+//                 href="#contact"
+//                 className="inline-flex items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-5 py-3 text-sm font-semibold text-[var(--text-primary)] transition hover:border-[var(--accent)]"
+//               >
+//                 Start a project
+//               </Link>
+//             </div>
+
+//             <div className="grid gap-3 sm:grid-cols-3">
+//               <div className="rounded-[26px] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-5">
+//                 <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-secondary)]">Focus</p>
+//                 <p className="mt-3 text-sm font-semibold text-[var(--text-primary)]">Product-first UI</p>
+//               </div>
+//               <div className="rounded-[26px] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-5">
+//                 <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-secondary)]">Stack</p>
+//                 <p className="mt-3 text-sm font-semibold text-[var(--text-primary)]">Next.js & React</p>
+//               </div>
+//               <div className="rounded-[26px] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-5">
+//                 <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-secondary)]">Output</p>
+//                 <p className="mt-3 text-sm font-semibold text-[var(--text-primary)]">Launch-ready builds</p>
+//               </div>
+//             </div>
+//           </div>
+
+//           <div className="relative flex items-center justify-center">
+//             <div className="absolute inset-6 rounded-[32px] bg-gradient-to-br from-[var(--accent)]/20 via-transparent to-[var(--accent-secondary)]/20 blur-3xl" />
+//             <div className="relative w-full max-w-[360px] rounded-[32px] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-3 shadow-[var(--shadow-strong)]">
+//               <div className="relative aspect-[4/5] overflow-hidden rounded-[28px]">
+//                 <Image
+//                   src="/muntasir.png"
+//                   alt="Muntasir Alam Resti"
+//                   fill
+//                   className="object-cover"
+//                   priority
+//                 />
+//               </div>
+
+//               <div className="mt-4 space-y-3">
+//                 <div className="rounded-[24px] border border-[var(--border-color)] bg-[var(--card-bg)] p-4">
+//                   <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-secondary)]">Featured</p>
+//                   <p className="mt-2 text-sm font-semibold text-[var(--text-primary)]">Shopora Commerce</p>
+//                   <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">
+//                     Fast checkout, polished interactions, and a premium brand feel.
+//                   </p>
+//                 </div>
+//                 <div className="flex flex-wrap gap-2">
+//                   <span className="rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-3 py-2 text-[11px] uppercase tracking-[0.2em] text-[var(--text-secondary)]">
+//                     Launch-ready
+//                   </span>
+//                   <span className="rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-3 py-2 text-[11px] uppercase tracking-[0.2em] text-[var(--text-secondary)]">
+//                     Elegant flow
+//                   </span>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }

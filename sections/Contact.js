@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Bold, Italic, Link as LinkIcon, Code, List, Heading, CheckCircle2 } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, Mail, Sparkles } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-  const [activeTab, setActiveTab] = useState("write");
 
   const containerRef = useScrollReveal();
 
@@ -17,10 +18,11 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
 
+    const form = e.currentTarget;
     const formData = {
-      name: e.target.title.value, // Using Title as Name
-      email: e.target.email.value,
-      message: e.target.message.value,
+      name: form.elements.namedItem("name")?.value || "",
+      email: form.elements.namedItem("email")?.value || "",
+      message: form.elements.namedItem("message")?.value || "",
     };
 
     try {
@@ -34,7 +36,7 @@ export default function Contact() {
       );
       setLoading(false);
       setSuccess(true);
-      e.target.reset();
+      form.reset();
       setTimeout(() => setSuccess(false), 5000);
     } catch (err) {
       setLoading(false);
@@ -44,160 +46,116 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" ref={containerRef} className="pt-4 border-t border-[var(--border-color)]">
-      
-      {/* Header */}
-      <div className="mb-4">
-        <h2 className="text-[24px] font-normal text-[var(--text-primary)]">
-          Open a new issue
-        </h2>
-        <p className="text-[14px] text-[var(--text-secondary)]">
-          Want to discuss a project or opportunity? Leave a message below.
-        </p>
-      </div>
+    <section id="contact" ref={containerRef} className="pt-4">
+      <div className="rounded-[28px] border border-[var(--border-color)] bg-[var(--card-bg)] p-6 shadow-[var(--shadow-soft)] md:p-8">
+        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="space-y-6">
+            <div>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.24em] text-[var(--text-secondary)]">
+                Let&apos;s build something memorable
+              </p>
+              <h2 className="mt-2 text-3xl font-semibold text-[var(--text-primary)] sm:text-4xl">
+                Ready to turn an idea into a polished product?
+              </h2>
+              <p className="mt-3 max-w-xl text-[15px] leading-7 text-[var(--text-secondary)]">
+                I&apos;m available for freelance work, product collaborations, and thoughtful frontend builds that feel as good as they perform.
+              </p>
+            </div>
 
-      {success && (
-        <div className="mb-4 px-4 py-3 gh-card flex items-center gap-2 border-[var(--success-light)] bg-[#e6ffed] dark:bg-[var(--success)] dark:bg-opacity-10 text-[var(--success)] text-[14px]">
-          <CheckCircle2 size={16} />
-          Issue successfully submitted! I will get back to you soon.
-        </div>
-      )}
-
-      {error && (
-        <div className="mb-4 px-4 py-3 gh-card border-red-400 bg-red-50 dark:bg-red-900 dark:bg-opacity-10 text-red-600 text-[14px]">
-          Failed to submit issue. Please try again or email me directly.
-        </div>
-      )}
-
-      <div className="flex gap-4">
-        
-        {/* Mock Avatar (Left Column) */}
-        <div className="hidden sm:block shrink-0">
-          <div className="relative w-10 h-10 rounded-full overflow-hidden bg-[var(--bg-secondary)] border border-[var(--border-color)]">
-            <Image
-              src="/muntasir.png"
-              alt="Avatar"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-
-        {/* Issue Editor Form */}
-        <form onSubmit={handleSubmit} className="flex-1 space-y-3">
-          
-          {/* Title Input */}
-          <div>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              required
-              placeholder="Add a title (Your Name)"
-              className="gh-input w-full px-3 py-[5px] text-[16px] font-medium placeholder-[var(--text-secondary)]"
-            />
-          </div>
-
-          {/* Email Input */}
-          <div>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="Your email address (for replies)"
-              className="gh-input w-full px-3 py-[5px] text-[14px] placeholder-[var(--text-secondary)]"
-            />
-          </div>
-
-          {/* Comment Box Card */}
-          <div className="gh-card overflow-hidden">
-            
-            {/* Tabs Header */}
-            <div className="flex items-center justify-between px-2 pt-2 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
-              <div className="flex">
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("write")}
-                  className={`px-4 py-2 text-[14px] font-medium border border-transparent rounded-t-md transition-colors ${
-                    activeTab === "write"
-                      ? "bg-[var(--bg-primary)] border-[var(--border-color)] border-b-transparent text-[var(--text-primary)] -mb-px z-10"
-                      : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                  }`}
-                >
-                  Write
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("preview")}
-                  className={`px-4 py-2 text-[14px] font-medium border border-transparent rounded-t-md transition-colors ${
-                    activeTab === "preview"
-                      ? "bg-[var(--bg-primary)] border-[var(--border-color)] border-b-transparent text-[var(--text-primary)] -mb-px z-10"
-                      : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                  }`}
-                >
-                  Preview
-                </button>
+            <div className="rounded-[24px] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
+              <div className="flex items-center gap-3">
+                <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[var(--border-color)] bg-[var(--bg-primary)]">
+                  <Image src="/muntasir.png" alt="Muntasir Alam Resti" fill className="object-cover" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-[var(--text-primary)]">Open for select opportunities</p>
+                  <p className="text-sm text-[var(--text-secondary)]">Fast turnarounds for MVPs and polished product launches</p>
+                </div>
               </div>
             </div>
 
-            {/* Markdown Toolbar (Decorative) */}
-            {activeTab === "write" && (
-              <div className="px-2 py-2 flex items-center gap-1 border-b border-[var(--border-color)] bg-[var(--bg-primary)]">
-                <button type="button" className="p-1 text-[var(--text-secondary)] hover:text-[var(--accent)] rounded hover:bg-[var(--bg-secondary)]"><Heading size={14} /></button>
-                <button type="button" className="p-1 text-[var(--text-secondary)] hover:text-[var(--accent)] rounded hover:bg-[var(--bg-secondary)]"><Bold size={14} /></button>
-                <button type="button" className="p-1 text-[var(--text-secondary)] hover:text-[var(--accent)] rounded hover:bg-[var(--bg-secondary)]"><Italic size={14} /></button>
-                <div className="w-px h-4 bg-[var(--border-color)] mx-1" />
-                <button type="button" className="p-1 text-[var(--text-secondary)] hover:text-[var(--accent)] rounded hover:bg-[var(--bg-secondary)]"><Code size={14} /></button>
-                <button type="button" className="p-1 text-[var(--text-secondary)] hover:text-[var(--accent)] rounded hover:bg-[var(--bg-secondary)]"><LinkIcon size={14} /></button>
-                <div className="w-px h-4 bg-[var(--border-color)] mx-1" />
-                <button type="button" className="p-1 text-[var(--text-secondary)] hover:text-[var(--accent)] rounded hover:bg-[var(--bg-secondary)]"><List size={14} /></button>
+            <div className="flex flex-wrap gap-3">
+              <a href="mailto:contact@muntasiralamresti.dev" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)]">
+                <Mail size={16} /> Email me
+              </a>
+              <a href="https://www.linkedin.com/in/muntasir-alam-resti" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)]">
+                <FaLinkedin size={15} /> LinkedIn
+              </a>
+              <a href="https://github.com/muntasiralamresti-official" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)]">
+                <FaGithub size={15} /> GitHub
+              </a>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--text-secondary)]">Availability</p>
+                <p className="mt-1 text-sm font-semibold text-[var(--text-primary)]">1–2 weeks for product-ready builds</p>
+              </div>
+              <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--text-secondary)]">Focus</p>
+                <p className="mt-1 text-sm font-semibold text-[var(--text-primary)]">Fast UI, strong UX, clear product decisions</p>
+              </div>
+            </div>
+
+            <Link href="/case-studies" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]">
+              <Sparkles size={15} /> Explore a couple of featured case studies
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+
+          <div className="space-y-4">
+            {success && (
+              <div className="flex items-center gap-2 rounded-2xl border border-[var(--success-light)] bg-[#e6ffed] px-4 py-3 text-sm text-[var(--success)] dark:bg-[var(--success)]/10">
+                <CheckCircle2 size={16} />
+                Thanks! Your message is on its way.
               </div>
             )}
 
-            {/* Textarea / Preview Body */}
-            <div className="p-2 bg-[var(--bg-primary)]">
-              {activeTab === "write" ? (
-                <textarea
-                  id="message"
-                  name="message"
+            {error && (
+              <div className="rounded-2xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-600 dark:bg-red-950/20">
+                Something went wrong. Please email me directly instead.
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="rounded-[24px] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-5">
+              <div className="grid gap-4 md:grid-cols-2">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
                   required
-                  rows="6"
-                  placeholder="Leave a comment"
-                  className="w-full px-2 py-1 text-[14px] bg-transparent resize-y outline-none font-mono"
-                  style={{ minHeight: '120px' }}
+                  placeholder="Your name"
+                  className="gh-input w-full rounded-2xl px-3 py-3 text-sm placeholder-[var(--text-secondary)]"
                 />
-              ) : (
-                <div className="px-2 py-4 text-[14px] text-[var(--text-secondary)] min-h-[120px] italic">
-                  Nothing to preview
-                </div>
-              )}
-            </div>
-            
-            {/* Footer / Drag Drop mock */}
-            <div className="px-3 py-2 bg-[var(--bg-primary)] border-t border-dashed border-[var(--border-color)] text-[12px] text-[var(--text-secondary)]">
-              Attach files by dragging & dropping, selecting or pasting them. (Mock)
-            </div>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Your email"
+                  className="gh-input w-full rounded-2xl px-3 py-3 text-sm placeholder-[var(--text-secondary)]"
+                />
+              </div>
 
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="6"
+                placeholder="Tell me about the project, timeline, or idea you have in mind..."
+                className="mt-4 min-h-[140px] w-full rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] px-3 py-3 text-sm text-[var(--text-primary)] outline-none placeholder-[var(--text-secondary)]"
+              />
+
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <p className="text-sm text-[var(--text-secondary)]">I typically reply within 1–2 business days.</p>
+                <button type="submit" disabled={loading} className="gh-btn-primary rounded-full px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-70">
+                  {loading ? "Sending..." : "Send message"}
+                </button>
+              </div>
+            </form>
           </div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center justify-end gap-3 pt-2">
-            <span className="text-[12px] text-[var(--text-secondary)] mr-auto">
-              <span className="hidden sm:inline">Markdown is supported</span>
-            </span>
-            <button
-              type="submit"
-              disabled={loading}
-              className="gh-btn-primary px-4 py-[5px] text-[14px] disabled:opacity-70 disabled:cursor-not-allowed"
-            >
-              {loading ? "Submitting..." : "Submit new issue"}
-            </button>
-          </div>
-
-        </form>
+        </div>
       </div>
-
     </section>
   );
 }
