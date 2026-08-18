@@ -10,7 +10,6 @@ import Skills from "@/sections/Skills";
 import Contact from "@/sections/Contact";
 
 import Readme from "@/sections/Readme";
-import ContributionGraph from "@/components/ContributionGraph";
 import ActivityFeed from "@/sections/ActivityFeed";
 
 export default function Home() {
@@ -27,9 +26,16 @@ export default function Home() {
           <div className="min-w-0 flex-1">
             <Readme />
 
-            <SectionDivider label="Activity" />
-            <div className="mb-8 pt-2">
-              <ContributionGraph />
+            {/* Spiderman "Cooking Projects" Alert */}
+            <div className="mb-10 mt-6 p-4 rounded-xl border border-red-500/30 bg-red-950/20 shadow-[0_0_20px_rgba(226,54,54,0.1)] flex flex-col sm:flex-row items-center gap-4 reveal-hidden">
+              <div className="relative flex-shrink-0 w-12 h-12 flex items-center justify-center bg-red-500/10 rounded-full border border-red-500/50">
+                <div className="absolute inset-0 rounded-full animate-ping bg-red-500/20" style={{ animationDuration: '2s' }}></div>
+                <span className="text-2xl">🕸️</span>
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="text-red-400 font-bold tracking-wide uppercase text-sm mb-1">Spider-Sense Tingling!</h3>
+                <p className="text-gray-300 text-sm">I'm currently swinging through the web and cooking up <strong className="text-white">2 new secret projects</strong>. Stay tuned!</p>
+              </div>
             </div>
 
             <SectionDivider label="Projects" />

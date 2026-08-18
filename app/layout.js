@@ -3,6 +3,7 @@ import "./globals.css";
 import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "../components/ThemeProvider";
 import KonamiEaster from "../components/KonamiEaster";
+import IntroScreen from "../components/IntroScreen";
 
 export const metadata = {
   metadataBase: new URL("https://muntasiralamresti.vercel.app"),
@@ -105,6 +106,7 @@ export default function RootLayout({ children }) {
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
           />
+          <IntroScreen />
           {children}
           <KonamiEaster />
         </ThemeProvider>
