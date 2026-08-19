@@ -13,10 +13,9 @@ export default function IntroAnimation({ onComplete }) {
       setIsVisible(false);
       if (onComplete) onComplete();
     } else {
-      // Auto hide after animation
       const timer = setTimeout(() => {
         handleComplete();
-      }, 3500); // 1.5s hold + fade out
+      }, 4000); 
       return () => clearTimeout(timer);
     }
   }, [onComplete]);
@@ -33,29 +32,39 @@ export default function IntroAnimation({ onComplete }) {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A0A0A]"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#050814]"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, clipPath: "circle(0% at 50% 50%)" }}
-          transition={{ duration: 1, ease: "easeInOut" }}
+          exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
         >
-          <motion.h1
-            className="text-6xl md:text-8xl font-bebas text-white tracking-widest cursor-pointer"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ 
-              opacity: 1, 
-              scale: 1,
-              textShadow: "0px 0px 20px rgba(230, 36, 41, 0.8)" 
-            }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            onClick={handleComplete}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-center"
           >
-            Hello
-          </motion.h1>
+            <p className="text-zinc-400 font-inter text-lg md:text-2xl italic mb-4">
+              "With great power..."
+            </p>
+            <motion.h1
+              className="text-5xl md:text-7xl font-bebas text-white tracking-widest uppercase"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1,
+                textShadow: "0px 0px 30px rgba(230, 36, 41, 0.8)" 
+              }}
+              transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
+            >
+              Comes Great <span className="text-[#E62429]">Code.</span>
+            </motion.h1>
+          </motion.div>
+          
           <button 
             onClick={handleComplete}
-            className="absolute bottom-10 text-white/50 hover:text-white uppercase tracking-widest text-sm transition-colors"
+            className="absolute bottom-10 text-zinc-600 hover:text-white uppercase tracking-widest text-sm transition-colors font-bebas"
           >
-            Skip
+            Skip Intro
           </button>
         </motion.div>
       )}

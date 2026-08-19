@@ -1,11 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-
-const skills = [
-  { category: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "JavaScript"] },
-  { category: "Backend", items: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs"] },
-  { category: "Tools", items: ["Git", "Figma", "Vercel", "Docker", "Postman"] }
-];
+import { skills } from "@/data/skills";
 
 export default function Skills() {
   return (
@@ -16,21 +11,30 @@ export default function Skills() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-5xl md:text-7xl font-bebas text-white uppercase mb-12 border-b border-[#E62429]/30 pb-4">Arsenal</h2>
+        <h2 className="text-5xl md:text-7xl font-bebas text-white uppercase mb-12 border-b border-[#E62429]/30 pb-4 tracking-wider">
+          Combat <span className="text-[#E62429]">Abilities</span>
+        </h2>
         
-        <div className="flex flex-col gap-12">
-          {skills.map((skillGroup, i) => (
-            <div key={i}>
-              <h3 className="text-2xl font-bebas text-[#E62429] mb-6 tracking-wide">{skillGroup.category}</h3>
-              <div className="flex flex-wrap gap-4">
-                {skillGroup.items.map((item, j) => (
-                  <span 
-                    key={j} 
-                    className="px-6 py-3 bg-[#111] border border-zinc-800 rounded-full text-zinc-300 font-inter hover:border-[#E62429] hover:text-white hover:shadow-[0_0_15px_rgba(230,36,41,0.5)] transition-all cursor-default"
-                  >
-                    {item}
-                  </span>
-                ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {skills.map((skill, i) => (
+            <div key={i} className="group">
+              <div className="flex justify-between items-end mb-2">
+                <h3 className="text-2xl font-bebas text-white tracking-wide group-hover:text-[#E62429] transition-colors">{skill.title}</h3>
+                <span className="text-zinc-500 font-bebas text-xl">{skill.percentage}%</span>
+              </div>
+              
+              {/* Progress bar */}
+              <div className="h-2 w-full bg-[#0A0D14] rounded-full overflow-hidden border border-[#1A2235]">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${skill.percentage}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  className="h-full bg-[#E62429] relative"
+                >
+                  {/* Glowing tip */}
+                  <div className="absolute right-0 top-0 bottom-0 w-4 bg-white/50 blur-[2px]" />
+                </motion.div>
               </div>
             </div>
           ))}
