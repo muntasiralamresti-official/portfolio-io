@@ -1,49 +1,31 @@
 import Link from "next/link";
-import { GitBranch, ChevronRight } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] flex flex-col items-center justify-center p-4">
-      <div className="text-center max-w-md w-full">
+    <div className="min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center p-4 z-10 relative">
+      <div className="text-center max-w-md w-full relative z-10">
+        <h1 className="text-[120px] font-bebas text-white mb-2 leading-none">
+          404
+        </h1>
+        <p className="text-xl text-[#E62429] font-bebas uppercase tracking-widest mb-8">
+          Lost in the Multiverse
+        </p>
         
-        {/* Terminal/Error Mock */}
-        <div className="gh-card p-6 mb-8 bg-[var(--bg-secondary)] border border-red-200 dark:border-red-900 shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
-          
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
-              <GitBranch className="text-red-500" size={32} />
-            </div>
-          </div>
-          
-          <h1 className="text-[24px] font-bold text-[var(--text-primary)] mb-2 font-mono">
-            404
-          </h1>
-          <p className="text-[16px] text-[var(--text-secondary)] font-mono">
-            fatal: Branch not found.
-          </p>
-          
-          <div className="mt-6 p-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded text-left font-mono text-[12px] text-[var(--text-secondary)] overflow-x-auto">
-            <code>
-              <span className="text-green-600 dark:text-green-400">$</span> git checkout current-url<br />
-              error: pathspec 'current-url' did not match any file(s) known to git
-            </code>
-          </div>
-        </div>
-
-        {/* Actions */}
-        <p className="text-[14px] text-[var(--text-primary)] mb-6">
+        <p className="text-zinc-400 font-inter mb-8">
           The page you are looking for doesn't exist or has been moved.
         </p>
         
         <Link 
           href="/" 
-          className="gh-btn-primary inline-flex items-center gap-2 px-6 py-2.5 text-[14px]"
+          className="inline-block px-8 py-4 bg-white text-black font-bebas text-xl tracking-widest uppercase rounded-full hover:bg-[#E62429] hover:text-white transition-colors duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(230,36,41,0.6)]"
         >
-          Return to main branch
-          <ChevronRight size={16} />
+          Return Home
         </Link>
-
+      </div>
+      
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+        <div className="w-[300px] h-[300px] bg-[#E62429]/10 rounded-full blur-[100px]" />
       </div>
     </div>
   );
