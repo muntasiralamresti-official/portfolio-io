@@ -1,7 +1,8 @@
 "use client";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, X, ArrowUpRight } from "lucide-react";
+import { ExternalLink, X, ArrowUpRight } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 import { projects } from "@/data/projects";
 
 export default function Projects() {
@@ -52,7 +53,7 @@ export default function Projects() {
             <div className="mt-8 flex flex-wrap gap-2">{(active.tech || []).map((t) => <span key={t} className="rounded-full border border-white/10 px-3 py-2 text-xs text-zinc-300">{t}</span>)}</div>
             <div className="mt-10 flex flex-wrap gap-3">
               {active.live && <a href={active.live} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#E62429] px-5 py-3 text-sm font-semibold text-white">Live project <ExternalLink size={15} /></a>}
-              {active.github && <a href={active.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white">Source <Github size={15} /></a>}
+              {active.github && <a href={active.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white">Source <FaGithub size={15} /></a>}
             </div>
           </motion.div>
         </motion.div>}
