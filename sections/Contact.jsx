@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Mail, Radio } from "lucide-react";
 
+const EMAIL = "muntasiralamresti@gmail.com";
+
 export default function Contact() {
   return (
     <section id="contact" className="relative z-10 mb-24 px-4 py-28 md:px-8 md:py-40">
@@ -28,7 +30,7 @@ export default function Contact() {
           <p className="mx-auto mt-7 max-w-2xl text-sm leading-7 text-zinc-400 md:text-lg md:leading-8">Have a product, interface, or idea worth building? Send the signal. I’ll get back to you as soon as I can.</p>
 
           <motion.a
-            href="mailto:hello@example.com"
+            href={`mailto:${EMAIL}`}
             data-cursor="web"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.98 }}
@@ -37,6 +39,10 @@ export default function Contact() {
             <span className="relative z-10 flex items-center gap-3"><Mail size={17} /> Send the signal <ArrowUpRight size={17} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" /></span>
             <motion.span className="absolute inset-0 bg-white" initial={{ x: "-105%" }} whileHover={{ x: 0 }} transition={{ duration: 0.35 }} />
           </motion.a>
+
+          <a href={`mailto:${EMAIL}`} className="mt-5 block text-xs text-zinc-500 transition hover:text-white md:text-sm">
+            {EMAIL}
+          </a>
         </div>
       </motion.div>
     </section>
