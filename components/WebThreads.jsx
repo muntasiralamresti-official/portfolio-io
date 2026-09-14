@@ -2,89 +2,83 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const particles = [
-  [7, 18, 2, 7], [14, 72, 1, 9], [23, 34, 1, 8], [31, 82, 2, 10],
-  [39, 14, 1, 6], [47, 57, 2, 9], [56, 27, 1, 8], [63, 78, 2, 7],
-  [71, 12, 1, 10], [79, 48, 2, 8], [88, 24, 1, 7], [94, 70, 2, 9],
-];
-
-const arcs = [
-  "M -10 72 C 18 44, 35 44, 55 70 S 92 94, 112 62",
-  "M -12 30 C 15 58, 34 56, 52 32 S 88 8, 112 38",
-  "M 18 -10 C 40 20, 60 22, 82 -8",
-];
+const stars = Array.from({ length: 34 }, (_, i) => ({
+  left: `${(i * 37) % 100}%`,
+  top: `${(i * 61) % 100}%`,
+  delay: (i % 7) * 0.45,
+  size: i % 5 === 0 ? 2 : 1,
+}));
 
 export default function WebThreads() {
   const { scrollYProgress } = useScroll();
-  const gridY = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const glowY = useTransform(scrollYProgress, [0, 1], [0, 180]);
-  const webOpacity = useTransform(scrollYProgress, [0, 0.12, 0.55, 1], [0.75, 1, 0.72, 0.42]);
+  const drift = useTransform(scrollYProgress, [0, 1], [0, -180]);
+  const webOpacity = useTransform(scrollYProgress, [0, 0.2, 0.7, 1], [0.75, 0.45, 0.6, 0.28]);
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
       {/* Deep cinematic atmosphere */}
-      <div className="absolute inset-0 bg-[#050507]" />
       <motion.div
-        style={{ y: glowY }}
-        className="absolute -left-[18vw] top-[4vh] h-[55vw] w-[55vw] rounded-full bg-[#E62429]/[0.055] blur-[120px]"
+        style={{ y: drift }}
+        className="absolute -left-[18vw] top-[8vh] h-[55vw] w-[55vw] rounded-full bg-[#E62429]/10 blur-[120px]"
       />
       <motion.div
-        style={{ y: glowY }}
-        className="absolute -right-[22vw] top-[35vh] h-[60vw] w-[60vw] rounded-full bg-white/[0.025] blur-[140px]"
+        animate={{ x: [0, 40, -20, 0], y: [0, -30, 25, 0], scale: [1, 1.08, 0.96, 1] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -right-[15vw] top-[28vh] h-[45vw] w-[45vw] rounded-full bg-[#E62429]/[0.07] blur-[110px]"
       />
 
-      {/* Moving technical grid */}
-      <motion.div style={{ y: gridY }} className="absolute -inset-y-[18%] inset-x-0 opacity-60">
-        <div className="absolute inset-0 [background-image:linear-gradient(rgba(255,255,255,0.026)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.026)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:linear-gradient(to_bottom,transparent,black_18%,black_78%,transparent)]" />
-      </motion.div>
-
-      {/* Slow scanning light */}
-      <motion.div
-        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#E62429]/40 to-transparent shadow-[0_0_30px_rgba(230,36,41,.25)]"
-        animate={{ top: ["8%", "92%", "8%"] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Spider-web arcs — subtle, organic, not a giant static web */}
-      <motion.svg
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        className="absolute inset-0 h-full w-full"
-        style={{ opacity: webOpacity }}
-      >
-        {arcs.map((d, index) => (
-          <motion.path
-            key={d}
-            d={d}
-            fill="none"
-            stroke="#E62429"
-            strokeWidth={index === 0 ? "0.11" : "0.08"}
-            strokeOpacity={index === 0 ? "0.32" : "0.18"}
-            strokeDasharray="1.5 2.8"
-            animate={{ strokeDashoffset: [0, -18] }}
-            transition={{ duration: 12 + index * 3, repeat: Infinity, ease: "linear" }}
+      {/* Floating city lights */}
+      <div className="absolute inset-0">
+        {stars.map((star, i) => (
+          <motion.span
+            key={i}
+            className="absolute rounded-full bg-white"
+            style={{ left: star.left, top: star.top, width: star.size, height: star.size }}
+            animate={{ opacity: [0.08, 0.55, 0.12], scale: [0.8, 1.5, 0.8] }}
+            transition={{ duration: 3.5 + (i % 4), delay: star.delay, repeat: Infinity, ease: "easeInOut" }}
           />
         ))}
-      </motion.svg>
+      </div>
 
-      {/* Floating signal particles */}
-      {particles.map(([left, top, size, duration], index) => (
-        <motion.span
-          key={index}
-          className="absolute rounded-full bg-[#E62429] shadow-[0_0_14px_rgba(230,36,41,.65)]"
-          style={{ left: `${left}%`, top: `${top}%`, width: size * 2, height: size * 2 }}
-          animate={{
-            y: [0, -18, 0],
-            opacity: [0.12, 0.65, 0.12],
-            scale: [0.7, 1.15, 0.7],
-          }}
-          transition={{ duration, repeat: Infinity, delay: index * 0.45, ease: "easeInOut" }}
-        />
-      ))}
+      {/* Large dimensional spider-web */}
+      <motion.div style={{ opacity: webOpacity }} className="absolute left-1/2 top-[-8%] h-[120vw] w-[120vw] max-h-[1500px] max-w-[1500px] -translate-x-1/2">
+        <svg viewBox="0 0 1000 1000" className="h-full w-full">
+          <defs>
+            <radialGradient id="webGlow" cx="50%" cy="0%" r="75%">
+              <stop offset="0%" stopColor="#E62429" stopOpacity="0.65" />
+              <stop offset="0.45" stopColor="#E62429" stopOpacity="0.18" />
+              <stop offset="1" stopColor="#E62429" stopOpacity="0" />
+            </radialGradient>
+            <filter id="softGlow"><feGaussianBlur stdDeviation="3" /></filter>
+          </defs>
+          <circle cx="500" cy="60" r="55" fill="url(#webGlow)" filter="url(#softGlow)" />
+          {[90, 170, 260, 360, 475].map((r) => (
+            <motion.circle key={r} cx="500" cy="60" r={r} fill="none" stroke="#E62429" strokeOpacity={0.12} strokeWidth="1" />
+          ))}
+          {Array.from({ length: 18 }, (_, i) => {
+            const angle = (i / 18) * Math.PI * 2;
+            const x = 500 + Math.cos(angle) * 520;
+            const y = 60 + Math.sin(angle) * 520;
+            return <line key={i} x1="500" y1="60" x2={x} y2={y} stroke="#E62429" strokeOpacity="0.11" strokeWidth="1" />;
+          })}
+          <motion.circle cx="500" cy="60" r="520" fill="none" stroke="#fff" strokeOpacity="0.035" strokeWidth="2" strokeDasharray="2 14" animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }} />
+        </svg>
+      </motion.div>
 
-      {/* Corner HUD markers */}
-      <div className="absolute left-5 top-1/2 h-16 w-px bg-gradient-to-b from-transparent via-[#E62429]/35 to-transparent md:left-8" />
-      <div className="absolute right-5 top-1/3 h-24 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent md:right-8" />
+      {/* Slow horizontal scan */}
+      <motion.div
+        animate={{ y: ["-10vh", "110vh"] }}
+        transition={{ duration: 11, repeat: Infinity, ease: "linear" }}
+        className="absolute left-0 h-px w-full bg-gradient-to-r from-transparent via-[#E62429]/20 to-transparent blur-[1px]"
+      />
+
+      {/* Technical grid */}
+      <motion.div
+        style={{ y: drift }}
+        className="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]"
+      />
+
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_15%,rgba(5,5,7,0.45)_70%,#050507_100%)]" />
     </div>
   );
 }
