@@ -1,219 +1,59 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  GitCommit,
-  Star,
-  GitMerge,
-  GitPullRequest,
-  GitBranch,
-} from "lucide-react";
-import { useScrollReveal } from "../hooks/useScrollReveal";
+import { GitBranch, GitCommit, GitPullRequest, Radio, Star } from "lucide-react";
 
 export default function ActivityFeed() {
-  const containerRef = useScrollReveal();
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      const cacheKey = "github-activity-feed";
-
-      // Read from localStorage safely (can be corrupted / JSON.parse can throw)
+    const cacheKey = "github-activity-feed";
+    const load = async () => {
       try {
-        if (typeof window !== "undefined") {
-          const cached = localStorage.getItem(cacheKey);
-          if (cached) {
-            const parsed = JSON.parse(cached);
-            const { data, timestamp } = parsed || {};
-
-            // 10 minute cache for feed
-            if (
-              Array.isArray(data) &&
-              typeof timestamp === "number" &&
-              Date.now() - timestamp < 600 * 1000
-            ) {
-              setEvents(data);
-              setLoading(false);
-              return;
-            }
+        const cached = typeof window !== "undefined" ? localStorage.getItem(cacheKey) : null;
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed?.data) && Date.now() - parsed.timestamp < 600000) {
+            setEvents(parsed.data); setLoading(false); return;
           }
         }
-      } catch (err) {
-        // Ignore cache errors and fall back to network fetch
-        console.warn("ActivityFeed: cache read failed", err);
-      }
-
+      } catch {}
       try {
-        const res = await fetch(
-          "https://api.github.com/users/muntasiralamresti-official/events/public?per_page=15",
-        );
-
-        if (!res.ok) {
-          if (res.status === 403) {
-            // GitHub API rate limit hit — fail silently, keep old cache if any
-            console.warn("GitHub API rate limit reached. Try again later.");
-          } else {
-            console.warn(`GitHub API request failed (status ${res.status})`);
-          }
-          setLoading(false);
-          return;
-        }
-
+        const res = await fetch("https://api.github.com/users/muntasiralamresti-official/events/public?per_page=15");
+        if (!res.ok) return;
         const data = await res.json();
-        const safeArray = Array.isArray(data) ? data : [];
-
-        const allowedTypes = new Set([
-          "PushEvent",
-          "WatchEvent",
-          "PullRequestEvent",
-          "CreateEvent",
-        ]);
-
-        // Filter and format the events
-        const formattedEvents = safeArray
-          .filter((e) => e && allowedTypes.has(e.type))
-          .slice(0, 8) // Take top 8
-          .map((e) => {
-            const repoName = e?.repo?.name;
-            const createdAt = e?.created_at ? new Date(e.created_at) : null;
-
-            let action = "did something";
-            let iconType = "default";
-
-            if (e.type === "PushEvent") {
-              const ref = e?.payload?.ref;
-              const branch =
-                typeof ref === "string" ? ref.replace("refs/heads/", "") : "";
-              action = branch ? `pushed to ${branch}` : "pushed";
-              iconType = "push";
-            } else if (e.type === "WatchEvent") {
-              action = "starred";
-              iconType = "watch";
-            } else if (e.type === "PullRequestEvent") {
-              const prAction = e?.payload?.action;
-              action = prAction
-                ? `${prAction} a pull request in`
-                : "updated a pull request in";
-              iconType = "pull_request";
-            } else if (e.type === "CreateEvent") {
-              const refType = e?.payload?.ref_type;
-              action = refType
-                ? `created a ${refType} in`
-                : "created something in";
-              iconType = "create";
-            }
-
-            // Ensure render never throws due to missing fields
-            return {
-              id:
-                e?.id ?? `${e?.type ?? "event"}-${e?.created_at ?? "unknown"}`,
-              repo: repoName ?? "unknown",
-              action,
-              date: createdAt
-                ? createdAt.toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                  })
-                : "",
-              iconType,
-            };
-          });
-
-        setEvents(formattedEvents);
-        try {
-          localStorage.setItem(
-            cacheKey,
-            JSON.stringify({
-              data: formattedEvents,
-              timestamp: Date.now(),
-            }),
-          );
-        } catch (err) {
-          // Ignore quota/security errors
-          console.warn("ActivityFeed: cache write failed", err);
-        }
-      } catch (error) {
-        console.error("Failed to fetch GitHub events", error);
-      } finally {
-        setLoading(false);
-      }
+        const allowed = new Set(["PushEvent", "WatchEvent", "PullRequestEvent", "CreateEvent"]);
+        const formatted = (Array.isArray(data) ? data : []).filter((e) => allowed.has(e?.type)).slice(0, 8).map((e) => {
+          const ref = e?.payload?.ref;
+          const branch = typeof ref === "string" ? ref.replace("refs/heads/", "") : "";
+          let action = "updated";
+          let icon = "push";
+          if (e.type === "PushEvent") action = branch ? `pushed to ${branch}` : "pushed";
+          if (e.type === "WatchEvent") { action = "starred"; icon = "watch"; }
+          if (e.type === "PullRequestEvent") { action = `${e?.payload?.action || "updated"} a pull request in`; icon = "pull"; }
+          if (e.type === "CreateEvent") { action = `created a ${e?.payload?.ref_type || "resource"} in`; icon = "branch"; }
+          return { id: e?.id, repo: e?.repo?.name || "unknown", action, icon, date: e?.created_at ? new Date(e.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "" };
+        });
+        setEvents(formatted);
+        try { localStorage.setItem(cacheKey, JSON.stringify({ data: formatted, timestamp: Date.now() })); } catch {}
+      } catch {}
+      finally { setLoading(false); }
     };
-
-    fetchEvents();
+    load();
   }, []);
 
-  const renderIcon = (type) => {
-    switch (type) {
-      case "push":
-        return (
-          <GitCommit size={14} className="text-green-600 dark:text-green-400" />
-        );
-      case "watch":
-        return <Star size={14} className="text-yellow-500" />;
-      case "pull_request":
-        return <GitPullRequest size={14} className="text-purple-500" />;
-      case "create":
-        return <GitBranch size={14} className="text-blue-500" />;
-      default:
-        return <GitCommit size={14} className="text-[var(--text-secondary)]" />;
-    }
-  };
+  const icon = (type) => type === "watch" ? <Star size={14} /> : type === "pull" ? <GitPullRequest size={14} /> : type === "branch" ? <GitBranch size={14} /> : <GitCommit size={14} />;
+  if (loading) return <section id="activity" className="relative z-10 px-4 py-28 md:px-8 md:py-40"><div className="mx-auto max-w-[1400px] animate-pulse text-[10px] uppercase tracking-[.35em] text-zinc-700">Receiving city signal...</div></section>;
+  if (!events.length) return null;
 
-  if (loading) {
-    return (
-      <section ref={containerRef}>
-        <h2 className="text-[16px] font-semibold text-[var(--text-primary)] mb-4">
-          Recent Activity
-        </h2>
-        <div className="animate-pulse space-y-4 relative pl-4">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="pl-6 pb-4">
-              <div className="h-4 w-48 bg-[var(--border-muted)] rounded mb-2"></div>
-              <div className="h-3 w-32 bg-[var(--border-muted)] rounded"></div>
-            </div>
-          ))}
-        </div>
-      </section>
-    );
-  }
-
-  if (events.length === 0) return null;
-
-  return (
-    <section id="activity" ref={containerRef}>
-      <h2 className="text-[16px] font-semibold text-[var(--text-primary)] mb-4">
-        Recent Activity
-      </h2>
-
-      <div className="relative pl-4 mt-2">
-        {events.map((item, index) => (
-          <div key={item.id} className="timeline-item relative pb-6 pl-8 group">
-            {/* Timeline Dot */}
-            <div className="timeline-dot bg-[var(--bg-primary)] border-[var(--border-color)] group-hover:border-[var(--text-secondary)] transition-colors">
-              {renderIcon(item.iconType)}
-            </div>
-
-            {/* Content */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-[14px]">
-              <span className="text-[var(--text-primary)]">
-                muntasiralamresti-official {item.action}
-              </span>
-              <a
-                href={`https://github.com/${item.repo}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-[var(--accent)] hover:underline break-words"
-              >
-                {item.repo}
-              </a>
-              <span className="text-[12px] text-[var(--text-secondary)] sm:ml-auto">
-                {item.date}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+  return <section id="activity" className="relative z-10 overflow-hidden px-4 py-28 md:px-8 md:py-40">
+    <div className="mx-auto max-w-[1400px]">
+      <div className="mb-12 flex flex-wrap items-end justify-between gap-5"><div><div className="mb-5 flex items-center gap-3 text-[9px] uppercase tracking-[.4em] text-zinc-600"><Radio size={12} className="text-[#E62429]" /> 005 / live city signal</div><h2 className="text-[clamp(4rem,9vw,8rem)] font-black uppercase leading-[.74] tracking-[-.08em] text-white">Recent <span className="text-[#E62429]">Moves.</span></h2></div><div className="flex items-center gap-2 text-[8px] uppercase tracking-[.3em] text-zinc-600"><span className="h-1.5 w-1.5 rounded-full bg-[#E62429] shadow-[0_0_12px_#E62429]" /> github uplink</div></div>
+      <div className="relative border-l border-[#E62429]/25 pl-7 md:pl-10">{events.map((item, i) => <a key={item.id} href={`https://github.com/${item.repo}`} target="_blank" rel="noreferrer" className="group relative block border-b border-white/[.06] py-6 first:pt-2 hover:bg-white/[.015]">
+        <span className="absolute -left-[34px] top-8 flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-[#07080b] text-[#E62429] transition group-hover:border-[#E62429]/60 group-hover:shadow-[0_0_25px_rgba(230,36,41,.2)] md:-left-[47px]">{icon(item.icon)}</span>
+        <div className="grid gap-2 md:grid-cols-[1fr_auto] md:items-center"><div><div className="text-[10px] uppercase tracking-[.22em] text-zinc-600">signal {String(i + 1).padStart(2, "0")} / {item.date}</div><div className="mt-2 text-sm text-zinc-300"><span className="font-semibold text-white">muntasiralamresti-official</span> {item.action} <span className="font-semibold text-[#E62429] transition group-hover:text-white">{item.repo}</span></div></div><span className="text-[8px] uppercase tracking-[.3em] text-zinc-700">open transmission →</span></div>
+      </a>)}</div>
+    </div>
+  </section>;
 }
