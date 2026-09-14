@@ -2,6 +2,8 @@
 import { useState } from "react";
 import IntroAnimation from "@/components/IntroAnimation";
 import WebThreads from "@/components/WebThreads";
+import WebCursor from "@/components/WebCursor";
+import WebLauncher from "@/components/WebLauncher";
 import CommandPalette from "@/components/CommandPalette";
 import ScrollProgress from "@/components/ScrollProgress";
 import Hero from "@/sections/Hero";
@@ -23,6 +25,8 @@ export default function Home() {
 
       <div className={`transition-opacity duration-1000 ${introComplete ? "opacity-100" : "opacity-0"}`}>
         <WebThreads />
+        <WebCursor />
+        <WebLauncher />
         <ScrollProgress />
         <CommandPalette />
 
