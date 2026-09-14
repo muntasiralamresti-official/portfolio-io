@@ -2,31 +2,41 @@
 import { useState } from "react";
 import IntroAnimation from "@/components/IntroAnimation";
 import WebThreads from "@/components/WebThreads";
+import CommandPalette from "@/components/CommandPalette";
 import Hero from "@/sections/Hero";
+import About from "@/sections/About";
 import Currently from "@/sections/Currently";
 import Skills from "@/sections/Skills";
 import Projects from "@/sections/Projects";
 import Experience from "@/sections/Experience";
+import ActivityFeed from "@/sections/ActivityFeed";
+import Certificates from "@/sections/Certificates";
 import Contact from "@/sections/Contact";
 
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false);
 
   return (
-    <main className="relative min-h-screen bg-[#0A0A0A] overflow-hidden">
+    <main className="relative min-h-screen overflow-hidden bg-[#050507] text-white selection:bg-[#E62429] selection:text-white">
       {!introComplete && <IntroAnimation onComplete={() => setIntroComplete(true)} />}
-      
-      <div className={`transition-opacity duration-1000 ${introComplete ? 'opacity-100' : 'opacity-0'}`}>
-        {/* The background web threads SVG tied to scroll */}
+
+      <div className={`transition-opacity duration-1000 ${introComplete ? "opacity-100" : "opacity-0"}`}>
         <WebThreads />
-        
-        {/* Main Content Sections */}
-        <div className="relative z-10 flex flex-col gap-24 md:gap-32 pb-24">
+        <CommandPalette />
+
+        <div className="pointer-events-none fixed left-0 top-0 z-[60] h-1 w-full bg-white/5">
+          <div id="scroll-progress" className="h-full origin-left scale-x-0 bg-[#E62429] shadow-[0_0_18px_rgba(230,36,41,.8)]" />
+        </div>
+
+        <div className="relative z-10 flex flex-col gap-16 pb-20 md:gap-24">
           <Hero />
+          <About />
           <Currently />
           <Skills />
           <Projects />
           <Experience />
+          <ActivityFeed />
+          <Certificates />
           <Contact />
         </div>
       </div>
