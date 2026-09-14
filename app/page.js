@@ -3,6 +3,7 @@ import { useState } from "react";
 import IntroAnimation from "@/components/IntroAnimation";
 import WebThreads from "@/components/WebThreads";
 import CommandPalette from "@/components/CommandPalette";
+import ScrollProgress from "@/components/ScrollProgress";
 import Hero from "@/sections/Hero";
 import About from "@/sections/About";
 import Currently from "@/sections/Currently";
@@ -22,11 +23,8 @@ export default function Home() {
 
       <div className={`transition-opacity duration-1000 ${introComplete ? "opacity-100" : "opacity-0"}`}>
         <WebThreads />
+        <ScrollProgress />
         <CommandPalette />
-
-        <div className="pointer-events-none fixed left-0 top-0 z-[60] h-1 w-full bg-white/5">
-          <div id="scroll-progress" className="h-full origin-left scale-x-0 bg-[#E62429] shadow-[0_0_18px_rgba(230,36,41,.8)]" />
-        </div>
 
         <div className="relative z-10 flex flex-col gap-16 pb-20 md:gap-24">
           <Hero />
