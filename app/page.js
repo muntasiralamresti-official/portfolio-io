@@ -10,6 +10,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import Hero from "@/sections/Hero";
 import About from "@/sections/About";
 import Currently from "@/sections/Currently";
+import Click2IT from "@/sections/Click2IT";
 import Skills from "@/sections/Skills";
 import Projects from "@/sections/Projects";
 import Experience from "@/sections/Experience";
@@ -34,6 +35,7 @@ export default function Home() {
           <Hero />
           <About />
           <Currently />
+          <Click2IT />
           <Skills />
           <Projects />
           <Experience />
