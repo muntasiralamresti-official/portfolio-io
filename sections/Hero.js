@@ -4,46 +4,4 @@ import Link from "next/link";
 import {ArrowDownRight,ArrowUpRight,Orbit,Sparkles} from "lucide-react";
 import {FaGithub} from "react-icons/fa";
 import portfolio from "@/data/portfolio.json";
-
-export default function Hero(){
-  const {scrollYProgress}=useScroll();
-  const y=useTransform(scrollYProgress,[0,.35],[0,-90]);
-  const p=portfolio.profile,h=portfolio.homepage;
-  return <section id="overview" className="relative min-h-[100svh] overflow-hidden px-5 pb-16 pt-24 md:px-10 md:pt-28">
-    <div className="pointer-events-none absolute left-1/2 top-[42%] h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/10 md:h-[760px] md:w-[760px]">
-      <div className="absolute inset-8 rounded-full border border-violet-300/10"/>
-      <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-cyan-300 shadow-[0_0_28px_#67e8f9]"/>
-    </div>
-    <motion.div style={{y}} className="relative mx-auto grid min-h-[calc(100svh-130px)] max-w-[1380px] items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
-      <div className="relative z-20">
-        <div className="mb-7 flex items-center gap-3 text-[10px] uppercase tracking-[.35em] text-slate-500"><span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_#67e8f9]"/>{h.eyebrow}<span className="text-cyan-300">online</span></div>
-        <h1 className="max-w-5xl text-[clamp(4rem,10vw,9.5rem)] font-black leading-[.78] tracking-[-.085em] text-white">
-          {p.name.split(" ").slice(0,2).join(" ")}<span className="gradient-text block">{p.name.split(" ").slice(2).join(" ")}</span>
-        </h1>
-        <div className="mt-9 max-w-2xl border-l border-cyan-300/40 pl-5">
-          <p className="text-sm leading-7 text-slate-300 md:text-base">{h.description}</p>
-        </div>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="#projects" className="group inline-flex items-center gap-3 rounded-full bg-cyan-300 px-6 py-3.5 text-[11px] font-bold uppercase tracking-[.12em] text-slate-950 shadow-[0_20px_70px_rgba(103,232,249,.2)] transition hover:-translate-y-1">{h.primaryCta}<ArrowDownRight size={15}/></Link>
-          <a href={portfolio.socials.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[.035] px-6 py-3.5 text-[11px] font-bold uppercase tracking-[.12em] text-slate-300 transition hover:border-cyan-300/30 hover:text-white"><FaGithub size={15}/>{h.secondaryCta}<ArrowUpRight size={14}/></a>
-        </div>
-        <div className="mt-10 flex items-center gap-6 text-[9px] uppercase tracking-[.28em] text-slate-600"><span>01 / identity</span><span className="space-line w-20"/><span>digital craft</span></div>
-      </div>
-      <div className="relative z-10 mx-auto w-full max-w-[520px]">
-        <motion.div animate={{rotate:360}} transition={{duration:28,repeat:Infinity,ease:"linear"}} className="absolute -inset-8 rounded-full border border-cyan-300/10 border-dashed"/>
-        <motion.div animate={{scale:[1,1.06,1]}} transition={{duration:4,repeat:Infinity}} className="absolute -inset-10 rounded-full bg-cyan-400/10 blur-[80px]"/>
-        <div className="space-panel relative overflow-hidden rounded-[42px] p-2">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[34px] bg-slate-950">
-            <img src={p.photo} alt={p.name} className="h-full w-full object-cover grayscale-[.35] transition duration-700 hover:scale-105 hover:grayscale-0"/>
-            <div className="absolute inset-0 bg-gradient-to-tr from-slate-950 via-transparent to-cyan-300/10"/>
-            <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[8px] uppercase tracking-[.25em] text-slate-400 backdrop-blur-md"><Orbit size={12} className="text-cyan-300"/> digital orbit</div>
-            <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/10 bg-slate-950/70 p-4 backdrop-blur-md">
-              <div className="text-[8px] uppercase tracking-[.3em] text-slate-500">mission profile</div>
-              <div className="mt-1 flex items-end justify-between"><div className="text-2xl font-black tracking-[-.04em] text-white">{p.headline}<span className="text-cyan-300">.</span></div><Sparkles size={17} className="text-cyan-300"/></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  </section>
-}
+export default function Hero(){const{scrollYProgress}=useScroll();const y=useTransform(scrollYProgress,[0,.35],[0,-90]);const p=portfolio.profile,h=portfolio.homepage;return <section id="overview" className="relative min-h-[100svh] overflow-hidden px-5 pb-16 pt-24 md:px-10 md:pt-28"><div className="pointer-events-none absolute left-1/2 top-[42%] h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/10 md:h-[760px] md:w-[760px]"><div className="absolute inset-8 rounded-full border border-violet-300/10"/><div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-cyan-300 shadow-[0_0_28px_#67e8f9]"/></div><motion.div style={{y}} className="relative mx-auto grid min-h-[calc(100svh-130px)] max-w-[1380px] items-center gap-12 lg:grid-cols-[1.1fr_.9fr]"><div className="relative z-20"><div className="mb-7 flex items-center gap-3 text-[10px] uppercase tracking-[.35em] text-slate-500"><span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_#67e8f9]"/>{h.eyebrow}<span className="text-cyan-300">online</span></div><h1 className="max-w-5xl text-[clamp(4rem,10vw,9.5rem)] font-black leading-[.78] tracking-[-.085em] text-white">{p.name.split(" ").slice(0,2).join(" ")}<span className="gradient-text block">{p.name.split(" ").slice(2).join(" ")}</span></h1><div className="mt-9 max-w-2xl border-l border-cyan-300/40 pl-5"><p className="text-sm leading-7 text-slate-300 md:text-base">{h.description}</p></div><div className="mt-8 flex flex-wrap gap-3"><Link href="#projects" className="group inline-flex items-center gap-3 rounded-full bg-cyan-300 px-6 py-3.5 text-[11px] font-bold uppercase tracking-[.12em] text-slate-950 shadow-[0_20px_70px_rgba(103,232,249,.2)] transition hover:-translate-y-1">{h.primaryCta}<ArrowDownRight size={15}/></Link><a href={portfolio.socials.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[.035] px-6 py-3.5 text-[11px] font-bold uppercase tracking-[.12em] text-slate-300 transition hover:border-cyan-300/30 hover:text-white"><FaGithub size={15}/>{h.secondaryCta}<ArrowUpRight size={14}/></a></div><div className="mt-10 flex items-center gap-6 text-[9px] uppercase tracking-[.28em] text-slate-600"><span>01 / identity</span><span className="space-line w-20"/><span>digital craft</span></div></div><div className="relative z-10 mx-auto w-full max-w-[520px]"><motion.div animate={{rotate:360}} transition={{duration:28,repeat:Infinity,ease:"linear"}} className="absolute -inset-8 rounded-full border border-cyan-300/10 border-dashed"/><motion.div animate={{scale:[1,1.06,1]}} transition={{duration:4,repeat:Infinity}} className="absolute -inset-10 rounded-full bg-cyan-400/10 blur-[80px]"/><div className="space-panel relative overflow-hidden rounded-[42px] p-2"><div className="relative aspect-[4/5] overflow-hidden rounded-[34px] bg-slate-950"><img src={p.photo} alt={p.name} className="h-full w-full object-cover grayscale-[.35] transition duration-700 hover:scale-105 hover:grayscale-0"/><div className="absolute inset-0 bg-gradient-to-tr from-slate-950 via-transparent to-cyan-300/10"/><div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[8px] uppercase tracking-[.25em] text-slate-400 backdrop-blur-md"><Orbit size={12} className="text-cyan-300"/> digital orbit</div><div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/10 bg-slate-950/70 p-4 backdrop-blur-md"><div className="text-[8px] uppercase tracking-[.3em] text-slate-500">mission profile</div><div className="mt-1 flex items-end justify-between"><div className="text-2xl font-black tracking-[-.04em] text-white">{p.headline}<span className="text-cyan-300">.</span></div><Sparkles size={17} className="text-cyan-300"/></div></div></div></div></div></motion.div></section>}
