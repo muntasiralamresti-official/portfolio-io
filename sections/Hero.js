@@ -1,8 +1,49 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {motion,useScroll,useTransform} from "framer-motion";
 import Link from "next/link";
-import { ArrowDownRight, ArrowUpRight, Radio, Sparkles } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
+import {ArrowDownRight,ArrowUpRight,Orbit,Sparkles} from "lucide-react";
+import {FaGithub} from "react-icons/fa";
 import portfolio from "@/data/portfolio.json";
-const cityBlocks=Array.from({length:13},(_,i)=>({left:`${i*8.5-3}%`,width:`${7+(i%4)*1.8}%`,height:`${18+((i*17)%35)}%`}));
-export default function Hero(){const{scrollYProgress}=useScroll();const titleY=useTransform(scrollYProgress,[0,.24],[0,-130]);const titleScale=useTransform(scrollYProgress,[0,.28],[1,.9]);const titleOpacity=useTransform(scrollYProgress,[0,.3],[1,.12]);const portraitY=useTransform(scrollYProgress,[0,.5],[0,-220]);const p=portfolio.profile,h=portfolio.homepage;return <section id="overview" className="relative min-h-[100svh] overflow-hidden px-4 pb-10 pt-24 md:px-8 md:pt-28"><div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_62%_32%,rgba(230,36,41,.16),transparent_24%),radial-gradient(circle_at_25%_75%,rgba(24,45,74,.18),transparent_35%)]"/><motion.div style={{y:useTransform(scrollYProgress,[0,1],[0,-80])}} className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%] opacity-70">{cityBlocks.map((b,i)=><div key={i} className="absolute bottom-0 border-x border-white/[.025] bg-[#05060a]" style={{left:b.left,width:b.width,height:b.height}}/>)}<div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#020203] to-transparent"/></motion.div><div className="relative mx-auto grid min-h-[calc(100svh-120px)] max-w-[1500px] items-center lg:grid-cols-[1.15fr_.85fr]"><motion.div style={{y:titleY,scale:titleScale,opacity:titleOpacity}} className="relative z-20 lg:-mr-28"><div className="mb-6 flex items-center gap-3 text-[9px] uppercase tracking-[.42em] text-zinc-500"><Radio size={11} className="text-[#E62429]"/>{h.eyebrow}<span className="text-[#E62429]">● live</span></div><h1 className="max-w-6xl text-[clamp(4.4rem,11.5vw,11.5rem)] font-black uppercase leading-[.7] tracking-[-.095em] text-white">{p.name.split(" ").slice(0,2).join(" ")}<span className="relative block text-[#E62429]">{p.name.split(" ").slice(2).join(" ")}</span></h1><div className="mt-8 max-w-2xl border-l border-[#E62429]/50 pl-5"><p className="text-sm leading-7 text-zinc-300 md:text-base">{h.description}</p></div><div className="mt-8 flex flex-wrap gap-3"><Link href="#projects" className="group inline-flex items-center gap-3 rounded-full bg-[#E62429] px-6 py-3.5 text-[11px] font-bold uppercase tracking-[.12em] text-white shadow-[0_20px_80px_rgba(230,36,41,.3)] transition hover:-translate-y-1">{h.primaryCta}<ArrowDownRight size={15}/></Link><a href={portfolio.socials.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-black/35 px-6 py-3.5 text-[11px] font-bold uppercase tracking-[.12em] text-zinc-300"><FaGithub size={15}/>{h.secondaryCta}<ArrowUpRight size={14}/></a></div></motion.div><motion.div style={{y:portraitY}} className="relative z-10 mx-auto mt-10 w-full max-w-[500px] lg:ml-auto lg:mt-0"><motion.div animate={{scale:[1,1.08,1],opacity:[.2,.42,.2]}} transition={{duration:4.5,repeat:Infinity}} className="absolute -inset-12 rounded-full bg-[#E62429]/15 blur-[70px]"/><div className="relative overflow-hidden rounded-[36px] border border-white/10 bg-black/75 p-2 shadow-[0_50px_140px_rgba(0,0,0,.72)] backdrop-blur-xl"><div className="relative aspect-[4/5] overflow-hidden rounded-[29px] bg-[#050507]"><img src={p.photo} alt={p.name} className="h-full w-full object-cover grayscale-[.8] transition duration-1000 hover:scale-[1.05] hover:grayscale-0"/><div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(230,36,41,.38),transparent_34%,rgba(0,0,0,.86))]"/><div className="absolute bottom-5 left-5 right-5 border-t border-white/15 pt-4"><div className="text-[8px] uppercase tracking-[.3em] text-white/45">friendly neighborhood</div><div className="mt-1 flex items-end justify-between"><div className="text-3xl font-black uppercase tracking-[-.05em] text-white">{p.headline}<span className="text-[#E62429]">.</span></div><Sparkles size={17} className="text-[#E62429]"/></div></div></div></div></motion.div></div></section>}
+
+export default function Hero(){
+  const {scrollYProgress}=useScroll();
+  const y=useTransform(scrollYProgress,[0,.35],[0,-90]);
+  const p=portfolio.profile,h=portfolio.homepage;
+  return <section id="overview" className="relative min-h-[100svh] overflow-hidden px-5 pb-16 pt-24 md:px-10 md:pt-28">
+    <div className="pointer-events-none absolute left-1/2 top-[42%] h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/10 md:h-[760px] md:w-[760px]">
+      <div className="absolute inset-8 rounded-full border border-violet-300/10"/>
+      <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-cyan-300 shadow-[0_0_28px_#67e8f9]"/>
+    </div>
+    <motion.div style={{y}} className="relative mx-auto grid min-h-[calc(100svh-130px)] max-w-[1380px] items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
+      <div className="relative z-20">
+        <div className="mb-7 flex items-center gap-3 text-[10px] uppercase tracking-[.35em] text-slate-500"><span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_#67e8f9]"/>{h.eyebrow}<span className="text-cyan-300">online</span></div>
+        <h1 className="max-w-5xl text-[clamp(4rem,10vw,9.5rem)] font-black leading-[.78] tracking-[-.085em] text-white">
+          {p.name.split(" ").slice(0,2).join(" ")}<span className="gradient-text block">{p.name.split(" ").slice(2).join(" ")}</span>
+        </h1>
+        <div className="mt-9 max-w-2xl border-l border-cyan-300/40 pl-5">
+          <p className="text-sm leading-7 text-slate-300 md:text-base">{h.description}</p>
+        </div>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link href="#projects" className="group inline-flex items-center gap-3 rounded-full bg-cyan-300 px-6 py-3.5 text-[11px] font-bold uppercase tracking-[.12em] text-slate-950 shadow-[0_20px_70px_rgba(103,232,249,.2)] transition hover:-translate-y-1">{h.primaryCta}<ArrowDownRight size={15}/></Link>
+          <a href={portfolio.socials.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[.035] px-6 py-3.5 text-[11px] font-bold uppercase tracking-[.12em] text-slate-300 transition hover:border-cyan-300/30 hover:text-white"><FaGithub size={15}/>{h.secondaryCta}<ArrowUpRight size={14}/></a>
+        </div>
+        <div className="mt-10 flex items-center gap-6 text-[9px] uppercase tracking-[.28em] text-slate-600"><span>01 / identity</span><span className="space-line w-20"/><span>digital craft</span></div>
+      </div>
+      <div className="relative z-10 mx-auto w-full max-w-[520px]">
+        <motion.div animate={{rotate:360}} transition={{duration:28,repeat:Infinity,ease:"linear"}} className="absolute -inset-8 rounded-full border border-cyan-300/10 border-dashed"/>
+        <motion.div animate={{scale:[1,1.06,1]}} transition={{duration:4,repeat:Infinity}} className="absolute -inset-10 rounded-full bg-cyan-400/10 blur-[80px]"/>
+        <div className="space-panel relative overflow-hidden rounded-[42px] p-2">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[34px] bg-slate-950">
+            <img src={p.photo} alt={p.name} className="h-full w-full object-cover grayscale-[.35] transition duration-700 hover:scale-105 hover:grayscale-0"/>
+            <div className="absolute inset-0 bg-gradient-to-tr from-slate-950 via-transparent to-cyan-300/10"/>
+            <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[8px] uppercase tracking-[.25em] text-slate-400 backdrop-blur-md"><Orbit size={12} className="text-cyan-300"/> digital orbit</div>
+            <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/10 bg-slate-950/70 p-4 backdrop-blur-md">
+              <div className="text-[8px] uppercase tracking-[.3em] text-slate-500">mission profile</div>
+              <div className="mt-1 flex items-end justify-between"><div className="text-2xl font-black tracking-[-.04em] text-white">{p.headline}<span className="text-cyan-300">.</span></div><Sparkles size={17} className="text-cyan-300"/></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </section>
+}
