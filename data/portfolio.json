@@ -1,0 +1,84 @@
+{
+  "profile": {
+    "name": "Muntasir Alam Resti",
+    "shortName": "MA.",
+    "headline": "Frontend Developer",
+    "bio": "I build modern, performant digital products where engineering meets motion, interaction, and visual storytelling.",
+    "secondaryBio": "Frontend is my core. Full-stack development is the direction. UI/UX and marketing give me the wider product perspective.",
+    "location": "Bangladesh",
+    "photo": "/muntasir.png",
+    "availability": "Open to opportunities"
+  },
+  "homepage": {
+    "eyebrow": "001 / rooftop transmission",
+    "description": "Digital experiences built with code, motion, and a little cinematic chaos. Scroll deeper — the city is waiting.",
+    "primaryCta": "Enter the work",
+    "secondaryCta": "GitHub"
+  },
+  "about": {
+    "cards": [
+      {"title":"React.js","desc":"Interactive UI systems","icon":"react"},
+      {"title":"Next.js","desc":"Modern web apps","icon":"next"},
+      {"title":"Tailwind","desc":"Precision styling","icon":"tailwind"},
+      {"title":"WordPress","desc":"CMS experiences","icon":"wordpress"},
+      {"title":"UI / UX","desc":"Visual direction","icon":"figma"},
+      {"title":"Marketing","desc":"Digital growth","icon":"marketing"}
+    ]
+  },
+  "currently": [
+    {"code":"01","title":"BUILDING","text":"Next-generation web applications with Next.js, Framer Motion and interaction-first thinking.","signal":"ACTIVE"},
+    {"code":"02","title":"LEARNING","text":"Going deeper into scalable frontend architecture and full-stack development.","signal":"EVOLVING"},
+    {"code":"03","title":"OPEN TO","text":"Full-time roles, freelance projects and collaborations where design and engineering can push each other.","signal":"RECEIVING"}
+  ],
+  "projects": [
+    {"id":"shopora","title":"Shopora E-Commerce","desc":"A full-featured, futuristic e-commerce platform with a product listing page, shopping cart, and live API data integration.","image":"/shopora.png","tech":["React","REST API","Tailwind CSS"],"github":"https://github.com/muntasiralamresti-official/Shopora","live":"https://shopora-mun.vercel.app/","category":"Web Development","featured":true,"completed":true,"published":true},
+    {"id":"purpl-x","title":"Purpl-x Social App","desc":"A modern social media web application concept featuring a dynamic feed, user profiles, and REST API integration.","image":"/perpl-x.png","tech":["Next.js","Tailwind CSS","REST API"],"github":"https://github.com/muntasiralamresti-official/purpl-x","live":"https://purpl-x.vercel.app/","category":"Web Development","featured":true,"completed":true,"published":true},
+    {"id":"innovate","title":"Innovate Landing Page","desc":"A clean, professional SaaS business landing page built with semantic HTML and Bootstrap.","image":"/Innovate.png","tech":["HTML5","CSS3","Bootstrap"],"github":"https://github.com/muntasiralamresti-official/innovate","live":"https://innovate-mun.vercel.app/","category":"Web Development","featured":true,"completed":true,"published":true},
+    {"id":"fashion-brand","title":"Fashion Brand Website","desc":"A high-impact fashion brand landing page with a bold editorial visual design.","image":"/fashion-brand.png","tech":["HTML5","CSS3"],"github":"https://github.com/muntasiralamresti-official/Fashion-Brand","live":"https://fashion-brand-neon.vercel.app/","category":"Web Development","featured":false,"completed":true,"published":true},
+    {"id":"elan-estates","title":"Elan Estates — Real Estate UI","desc":"A premium luxury real estate platform UI/UX design crafted in Figma.","image":"/Elan-Estates.png","tech":["Figma","UI/UX Design"],"github":"","live":"https://dribbble.com/shots/26922498-Luxury-Real-Estate-Website-UI-Design","category":"UI/UX Design","featured":false,"completed":true,"published":true}
+  ],
+  "skills": [
+    {"id":"react","name":"React","value":90,"category":"Frontend","active":true},
+    {"id":"next","name":"Next.js","value":82,"category":"Frontend","active":true},
+    {"id":"tailwind","name":"Tailwind CSS","value":88,"category":"Frontend","active":true},
+    {"id":"uiux","name":"UI / UX","value":80,"category":"Design","active":true},
+    {"id":"marketing","name":"Digital Marketing","value":75,"category":"Other","active":true},
+    {"id":"javascript","name":"JavaScript","value":85,"category":"Frontend","active":true},
+    {"id":"wordpress","name":"WordPress","value":75,"category":"CMS","active":true}
+  ],
+  "experience": [
+    {"id":"web-development","title":"Web Development","org":"Self-Directed Learning","date":"2025 — Present","desc":"Building modern, performant, responsive web applications with React, Next.js and Tailwind CSS.","current":true},
+    {"id":"uiux","title":"UI/UX Design with Figma","org":"Design Certification","date":"2025","desc":"Studied wireframing, prototyping, design systems and user-centered interface design in Figma.","current":false},
+    {"id":"digital-marketing","title":"Digital Marketing Level 1 & 2","org":"Professional Training","date":"2024","desc":"Training across social strategy, brand positioning, audience growth and engagement.","current":false}
+  ],
+  "education": [
+    {"id":"diploma","degree":"Diploma in Computer Science","institution":"Gazipur Engineering Institute","session":"2021 — 2025","description":"Computer Science and technology education."}
+  ],
+  "certificates": [
+    {"id":"digital-marketing","title":"Digital Marketing Level 1 & 2","desc":"Professional training across social media marketing, branding strategy and audience engagement.","image":"/de.jpeg","certificate":"/de.jpeg","issuer":"Professional Training","year":"2024"},
+    {"id":"uiux","title":"UI/UX Design Using Figma","desc":"Creative UI/UX learning focused on modern interfaces, layouts and user experience design.","image":"/ui.jpeg","certificate":"/ui.jpeg","issuer":"Design Learning","year":"2025"}
+  ],
+  "services": [
+    {"id":"frontend","title":"Frontend Development","description":"Responsive, interactive websites and web applications."},
+    {"id":"uiux","title":"UI/UX Design","description":"Clean interface design and prototypes in Figma."},
+    {"id":"wordpress","title":"WordPress Customization","description":"Business and portfolio website customization."}
+  ],
+  "socials": {
+    "github":"https://github.com/muntasiralamresti-official",
+    "linkedin":"https://www.linkedin.com/in/muntasir-alam-resti",
+    "email":"muntasiralamresti@gmail.com",
+    "dribbble":"https://dribbble.com/",
+    "behance":"https://behance.net/"
+  },
+  "contact": {
+    "email":"muntasiralamresti@gmail.com",
+    "replyWindow":"1–2 business days",
+    "headline":"Send the Signal.",
+    "description":"Got a product, interface or idea worth building? Fire the web. The communication channel is open."
+  },
+  "settings": {
+    "siteTitle":"Muntasir Alam Resti — Portfolio",
+    "description":"Frontend developer portfolio of Muntasir Alam Resti.",
+    "theme":"dark-red"
+  }
+}
