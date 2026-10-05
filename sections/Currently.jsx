@@ -1,5 +1,59 @@
 "use client";
-import {motion} from "framer-motion";
-import {Activity,Signal} from "lucide-react";
+
+import { motion } from "framer-motion";
+import { Activity, Signal } from "lucide-react";
 import portfolio from "@/data/portfolio.json";
-export default function Currently(){return <section className="relative px-5 py-24 md:px-10 md:py-32"><div className="mx-auto max-w-[1400px]"><motion.div initial={{opacity:0}} whileInView={{opacity:1}} viewport={{once:true}} className="mb-10 border-b border-white/10 pb-5"><div className="mb-3 flex items-center gap-2 text-[10px] uppercase tracking-[.4em] text-cyan-300"><Signal size={12}/> live systems / 03</div><h2 className="text-4xl font-black uppercase tracking-[-.05em] text-white md:text-6xl">Right <span className="text-slate-600">Now.</span></h2></motion.div><div className="grid gap-3 md:grid-cols-3">{portfolio.currently.map(item=><motion.article key={item.code} whileHover={{y:-6}} className="space-panel group relative overflow-hidden rounded-[28px] p-7 md:p-8"><div className="relative flex min-h-[270px] flex-col justify-between"><div className="flex items-center justify-between text-[9px] uppercase tracking-[.25em] text-slate-600"><span>{item.code} / STATUS</span><Activity size={13} className="text-cyan-300"/></div><div><h3 className="text-3xl font-black tracking-[-.04em] text-white transition group-hover:text-cyan-300">{item.title}</h3><p className="mt-4 text-sm leading-7 text-slate-500">{item.text}</p></div><div className="text-[8px] uppercase tracking-[.3em] text-slate-700">{item.signal} / incoming</div></div></motion.article>)}</div></div></section>
+
+export default function Currently() {
+  return (
+    <section className="relative px-5 py-24 md:px-10 md:py-32">
+      <div className="mx-auto max-w-[1400px]">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-10 border-b border-white/10 pb-5"
+        >
+          <div className="mb-3 flex items-center gap-2 text-[10px] uppercase tracking-[.4em] text-cyan-300">
+            <Signal size={12} />
+            live systems / 03
+          </div>
+
+          <h2 className="text-4xl font-black uppercase tracking-[-.05em] text-white md:text-6xl">
+            Right <span className="text-slate-600">Now.</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid gap-3 md:grid-cols-3">
+          {portfolio.currently.map((item) => (
+            <motion.article
+              key={item.code}
+              whileHover={{ y: -6 }}
+              className="space-panel group relative overflow-hidden rounded-[28px] p-7 md:p-8"
+            >
+              <div className="relative flex min-h-[270px] flex-col justify-between">
+                <div className="flex items-center justify-between text-[9px] uppercase tracking-[.25em] text-slate-600">
+                  <span>{item.code} / STATUS</span>
+                  <Activity size={13} className="text-cyan-300" />
+                </div>
+
+                <div>
+                  <h3 className="text-3xl font-black tracking-[-.04em] text-white transition group-hover:text-cyan-300">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-7 text-slate-500">
+                    {item.text}
+                  </p>
+                </div>
+
+                <div className="text-[8px] uppercase tracking-[.3em] text-slate-700">
+                  {item.signal} / incoming
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
