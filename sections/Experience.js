@@ -1,6 +1,12 @@
 "use client";
-import {motion} from "framer-motion";
-import {Code2,GraduationCap,Megaphone,Radio} from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import portfolio from "@/data/portfolio.json";
-const icons={"Web Development":Code2,"UI/UX Design with Figma":GraduationCap,"Digital Marketing Level 1 & 2":Megaphone};
-export default function Experience(){return <section id="experience" className="relative overflow-hidden px-5 py-28 md:px-10 md:py-40"><div className="mx-auto max-w-[1400px]"><div className="mb-14"><div className="mb-5 flex items-center gap-3 text-[9px] uppercase tracking-[.4em] text-slate-600"><Radio size={12} className="text-cyan-300"/>006 / trajectory</div><h2 className="text-[clamp(4rem,9vw,8rem)] font-black uppercase leading-[.74] tracking-[-.08em] text-white">Work <span className="gradient-text">Orbit.</span></h2></div><div className="relative"><div className="absolute left-[18px] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-300/40 to-transparent md:left-1/2 md:-translate-x-1/2"/>{portfolio.experience.map((item,i)=>{const Icon=icons[item.title]||Code2,left=i%2===0;return <motion.article key={item.id} initial={{opacity:0,x:left?-35:35}} whileInView={{opacity:1,x:0}} viewport={{once:true}} className={`relative mb-12 pl-12 md:mb-20 md:w-1/2 md:pl-0 ${left?"md:pr-16":"md:ml-auto md:pl-16"}`}><div className="space-panel rounded-[24px] p-7"><div className="flex items-start justify-between gap-5"><div><div className="mb-2 text-[9px] uppercase tracking-[.28em] text-cyan-300">{item.date}</div><h3 className="text-2xl font-black uppercase text-white">{item.title}</h3><p className="mt-2 text-[9px] uppercase tracking-[.24em] text-slate-600">{item.org}</p></div><span className="rounded-full border border-cyan-300/10 bg-cyan-300/5 p-3 text-cyan-300"><Icon size={17}/></span></div><p className="mt-6 text-sm leading-7 text-slate-400">{item.desc}</p></div></motion.article>})}</div></div></div></section>}
+
+export default function Experience() {
+  return <section id="experience" className="neo-section border-y border-black/10">
+    <div className="neo-container"><div className="grid gap-12 lg:grid-cols-[.5fr_1.5fr]"><div><div className="neo-kicker">07 / Experience</div><h2 className="neo-title mt-6">The<br/><span className="text-neutral-400">path.</span></h2></div>
+      <div className="divide-y divide-black/10 border-y border-black/10">{portfolio.experience.map((item,i)=><motion.article whileHover={{x:6}} key={item.id} className="grid gap-5 py-8 md:grid-cols-[110px_1fr_auto]"><div className="neo-kicker">{item.date}</div><div><h3 className="text-2xl font-black">{item.title}</h3><div className="mt-2 text-xs font-bold uppercase tracking-[.14em] text-neutral-500">{item.org}</div><p className="mt-5 max-w-2xl text-sm leading-7 text-neutral-600">{item.desc}</p></div><ArrowUpRight className="text-neutral-400"/></motion.article>)}</div>
+    </div></div>
+  </section>;
+}
