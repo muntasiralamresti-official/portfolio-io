@@ -1,7 +1,30 @@
 "use client";
-import {motion} from "framer-motion";
-import {FaReact,FaFigma,FaWordpress} from "react-icons/fa";
-import {SiNextdotjs,SiTailwindcss,SiGoogleads} from "react-icons/si";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import portfolio from "@/data/portfolio.json";
-const icons={react:<FaReact/>,next:<SiNextdotjs/>,tailwind:<SiTailwindcss/>,wordpress:<FaWordpress/>,figma:<FaFigma/>,marketing:<SiGoogleads/>};
-export default function About(){const p=portfolio.profile;return <section id="about" className="relative overflow-hidden px-5 py-28 md:px-10 md:py-40"><div className="mx-auto max-w-[1400px]"><div className="mb-16 border-b border-white/10 pb-6"><div className="mb-4 text-[10px] uppercase tracking-[.4em] text-cyan-300">02 / the human layer</div><h2 className="text-[clamp(3.5rem,8vw,7.5rem)] font-black uppercase leading-[.8] tracking-[-.07em] text-white">Behind <span className="text-slate-600">The</span><br/><span className="gradient-text">Interface.</span></h2></div><div className="grid gap-5 lg:grid-cols-[.9fr_1.1fr]"><motion.div className="cinematic-card relative overflow-hidden rounded-[32px] p-7 md:p-10"><div className="relative flex min-h-[430px] flex-col justify-between"><div className="text-[9px] uppercase tracking-[.3em] text-slate-600">PROFILE / MUNTASIR_ALAM</div><div><div className="mb-6 text-6xl font-black tracking-[-.07em] text-white">{p.shortName}<span className="text-cyan-300">.</span></div><p className="max-w-xl text-base leading-8 text-slate-300">{p.bio}</p><p className="mt-5 max-w-xl text-sm leading-7 text-slate-500">{p.secondaryBio}</p></div><div className="flex items-center gap-3 text-[8px] uppercase tracking-[.3em] text-slate-600"><span className="h-1.5 w-1.5 rounded-full bg-cyan-300"/> system online / based in {p.location}</div></div></motion.div><div className="grid grid-cols-2 gap-3 md:gap-4">{portfolio.about.cards.map(item=><motion.div key={item.title} whileHover={{y:-7}} className="group rounded-[26px] border border-white/10 bg-white/[.025] p-5 transition hover:border-cyan-300/20 md:p-7"><div className="mb-7 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-slate-950 text-lg text-slate-300 group-hover:text-cyan-300">{icons[item.icon]}</div><div className="text-sm font-bold uppercase tracking-wide text-white">{item.title}</div><div className="mt-2 text-xs leading-5 text-slate-600">{item.desc}</div></motion.div>)}</div></div></div></section>}
+
+export default function About() {
+  const p = portfolio.profile;
+  return (
+    <section id="about" className="neo-section border-y border-black/10">
+      <div className="neo-container">
+        <div className="grid gap-12 lg:grid-cols-[.4fr_1.6fr]">
+          <div><div className="neo-kicker">02 / About</div><div className="mt-8 text-6xl font-black tracking-[-.08em]">ME<span className="neo-lime">.</span></div></div>
+          <div>
+            <h2 className="neo-title max-w-5xl">I care about the <span className="text-neutral-400">details</span> people feel.</h2>
+            <div className="mt-10 grid gap-10 md:grid-cols-2">
+              <p className="text-base leading-8 text-neutral-600">{p.secondaryBio}</p>
+              <div>
+                <p className="text-sm leading-7 text-neutral-600">{p.bio}</p>
+                <a href="#contact" className="mt-7 inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[.15em] underline underline-offset-8">Start a conversation <ArrowUpRight size={13}/></a>
+              </div>
+            </div>
+            <div className="mt-14 grid gap-3 sm:grid-cols-3">
+              {portfolio.about.cards.slice(0,6).map((item,i) => <motion.div whileHover={{y:-5}} key={item.title} className="neo-card rounded-2xl p-5"><div className="neo-kicker">{String(i+1).padStart(2,"0")}</div><div className="mt-8 text-lg font-black">{item.title}</div><div className="mt-2 text-xs text-neutral-500">{item.desc}</div></motion.div>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
