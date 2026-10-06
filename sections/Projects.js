@@ -1,5 +1,17 @@
 "use client";
-import portfolio from "@/data/portfolio.json";
-import ProjectCard from "@/components/ProjectCard";
+import Image from "next/image";
 import Link from "next/link";
-export default function Projects(){const projects=portfolio.projects.filter(p=>p.published);return <section id="projects" className="px-5 py-28 md:px-10 md:py-40"><div className="mx-auto max-w-[1400px]"><div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><div className="mb-4 text-[9px] uppercase tracking-[.4em] text-cyan-300">04 / selected missions</div><h2 className="text-[clamp(4rem,9vw,8rem)] font-black uppercase leading-[.74] tracking-[-.08em] text-white">Built <span className="gradient-text">Here.</span></h2></div><Link href="/projects" className="text-[11px] uppercase tracking-[.18em] text-slate-500 transition hover:text-cyan-300">View all repositories →</Link></div><div className="grid gap-5 md:grid-cols-2">{projects.filter(p=>p.featured).slice(0,4).map((project,i)=><div key={project.id||i} className="space-panel overflow-hidden rounded-[28px] p-1 transition duration-500 hover:-translate-y-1 hover:border-cyan-300/25"><ProjectCard project={project}/></div>)}</div><div className="mt-5"><Link href="/projects" className="block rounded-2xl border border-white/10 bg-white/[.025] py-3 text-center text-[11px] uppercase tracking-[.18em] text-slate-400 transition hover:border-cyan-300/20 hover:text-cyan-300">Explore full mission archive</Link></div></div></section>
+import { ArrowUpRight } from "lucide-react";
+import portfolio from "@/data/portfolio.json";
+
+export default function Projects() {
+  const projects=portfolio.projects.filter(p=>p.published&&p.featured).slice(0,4);
+  return <section id="projects" className="neo-section">
+    <div className="neo-container"><div className="mb-12 flex flex-wrap items-end justify-between gap-6"><div><div className="neo-kicker">06 / Selected work</div><h2 className="neo-title mt-5">Built to<br/><span className="text-neutral-400">matter.</span></h2></div><Link href="/projects" className="neo-button">View archive <ArrowUpRight size={14}/></Link></div>
+      <div className="grid gap-5 md:grid-cols-2">{projects.map((p,i)=><article key={p.id} className={`group neo-card overflow-hidden rounded-[28px] ${i===0?"md:col-span-2":""}`}>
+        <div className={`relative overflow-hidden bg-neutral-900 ${i===0?"aspect-[16/7]":"aspect-[16/10]"}`}>{p.image&&<Image src={p.image} alt={p.title} fill className="object-cover transition duration-700 group-hover:scale-105"/>}<div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"/><div className="absolute bottom-5 left-5 right-5 flex items-end justify-between text-white"><div><div className="neo-kicker text-neutral-300">{p.category}</div><h3 className="mt-2 text-2xl font-black md:text-4xl">{p.title}</h3></div><ArrowUpRight className="transition group-hover:rotate-45" /></div></div>
+        <div className="flex flex-wrap items-center justify-between gap-4 p-5"><p className="max-w-2xl text-sm leading-6 text-neutral-600">{p.desc}</p><div className="flex flex-wrap gap-2">{p.tech.slice(0,3).map(t=><span key={t} className="neo-pill">{t}</span>)}</div></div>
+      </article>)}</div>
+    </div>
+  </section>;
+}

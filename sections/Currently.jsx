@@ -1,57 +1,21 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { Activity, Signal } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import portfolio from "@/data/portfolio.json";
 
 export default function Currently() {
   return (
-    <section className="relative px-5 py-24 md:px-10 md:py-32">
-      <div className="mx-auto max-w-[1400px]">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mb-10 border-b border-white/10 pb-5"
-        >
-          <div className="mb-3 flex items-center gap-2 text-[10px] uppercase tracking-[.4em] text-cyan-300">
-            <Signal size={12} />
-            live systems / 03
-          </div>
-
-          <h2 className="text-4xl font-black uppercase tracking-[-.05em] text-white md:text-6xl">
-            Right <span className="text-slate-600">Now.</span>
-          </h2>
-        </motion.div>
-
+    <section className="neo-section">
+      <div className="neo-container">
+        <div className="mb-12 flex items-end justify-between gap-5 border-b border-black/10 pb-5">
+          <div><div className="neo-kicker">03 / Now</div><h2 className="neo-title mt-5">In progress.</h2></div>
+          <span className="neo-pill hidden md:block">Live status / 2026</span>
+        </div>
         <div className="grid gap-3 md:grid-cols-3">
-          {portfolio.currently.map((item) => (
-            <motion.article
-              key={item.code}
-              whileHover={{ y: -6 }}
-              className="space-panel group relative overflow-hidden rounded-[28px] p-7 md:p-8"
-            >
-              <div className="relative flex min-h-[270px] flex-col justify-between">
-                <div className="flex items-center justify-between text-[9px] uppercase tracking-[.25em] text-slate-600">
-                  <span>{item.code} / STATUS</span>
-                  <Activity size={13} className="text-cyan-300" />
-                </div>
-
-                <div>
-                  <h3 className="text-3xl font-black tracking-[-.04em] text-white transition group-hover:text-cyan-300">
-                    {item.title}
-                  </h3>
-                  <p className="mt-4 text-sm leading-7 text-slate-500">
-                    {item.text}
-                  </p>
-                </div>
-
-                <div className="text-[8px] uppercase tracking-[.3em] text-slate-700">
-                  {item.signal} / incoming
-                </div>
-              </div>
-            </motion.article>
-          ))}
+          {portfolio.currently.map((item,i) => <motion.article whileHover={{y:-7}} key={item.code} className="neo-dark group rounded-[26px] p-7 md:p-9">
+            <div className="flex items-center justify-between"><span className="neo-pill border-white/20 text-neutral-300">{item.code}</span><ArrowUpRight size={17} className="text-[#c7ff32] transition group-hover:rotate-45"/></div>
+            <div className="mt-20"><div className="neo-kicker text-neutral-500">{item.signal}</div><h3 className="mt-3 text-3xl font-black">{item.title}</h3><p className="mt-4 text-sm leading-7 text-neutral-400">{item.text}</p></div>
+          </motion.article>)}
         </div>
       </div>
     </section>

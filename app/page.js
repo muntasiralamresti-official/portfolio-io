@@ -1,4 +1,6 @@
 "use client";
+import Navbar from "@/components/Navbar";
+import Hero from "@/sections/Hero";
 import About from "@/sections/About";
 import Currently from "@/sections/Currently";
 import Click2IT from "@/sections/Click2IT";
@@ -8,5 +10,25 @@ import Experience from "@/sections/Experience";
 import ActivityFeed from "@/sections/ActivityFeed";
 import Certificates from "@/sections/Certificates";
 import Contact from "@/sections/Contact";
-import Hero from "@/sections/Hero";
-export default function Home(){return <main className="space-app min-h-screen overflow-hidden text-white selection:bg-cyan-300 selection:text-slate-950"><div className="space-stars"/><div className="space-nebula space-nebula-a"/><div className="space-nebula space-nebula-b"/><div className="relative z-10"><Hero/><div className="space-shell"><About/><Currently/><Click2IT/><Skills/><Projects/><Experience/><ActivityFeed/><Certificates/><Contact/></div></div></main>}
+
+export default function Home() {
+  return (
+    <main className="neo-site">
+      <Navbar />
+      <Hero />
+      <About />
+      <Currently />
+      <Click2IT />
+      <Skills />
+      <Projects />
+      <Experience />
+      <ActivityFeed />
+      <Certificates />
+      <Contact />
+      <footer className="neo-footer">
+        <span>© {new Date().getFullYear()} Muntasir Alam Resti</span>
+        <span>Built with intent / shipped with care</span>
+      </footer>
+    </main>
+  );
+}
