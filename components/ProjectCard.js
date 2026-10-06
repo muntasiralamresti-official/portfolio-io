@@ -1,4 +1,26 @@
 import Image from "next/image";
-import {Book,Star,GitFork,ExternalLink} from "lucide-react";
-import {FaGithub} from "react-icons/fa";
-export default function ProjectCard({project}){const getLanguageColor=tech=>{const t=tech.toLowerCase();if(t.includes("react")||t.includes("next"))return "#67e8f9";if(t.includes("javascript"))return "#fbbf24";if(t.includes("tailwind")||t.includes("css"))return "#a78bfa";if(t.includes("html"))return "#fb7185";return "#94a3b8"};const hash=str=>{let h=0;for(let i=0;i<str.length;i++)h=str.charCodeAt(i)+((h<<5)-h);return Math.abs(h)};const primaryLanguage=project.tech?.[0]||"JavaScript",stars=hash((project.title||"repo")+"stars")%50+1,forks=hash((project.title||"repo")+"forks")%20+1;return <article className="flex h-full flex-col overflow-hidden rounded-[24px] bg-slate-950/50"><div className="relative h-52 overflow-hidden bg-slate-900">{project.image?<Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-500 hover:scale-105"/>:<div className="flex h-full items-center justify-center text-slate-600"><span className="text-sm uppercase tracking-[.18em]">Project preview</span></div>}<div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 to-transparent p-4"><div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/50 px-3 py-1 text-[11px] uppercase tracking-[.22em] text-slate-200"><Book size={12}/> Featured work</div></div></div><div className="flex flex-1 flex-col gap-4 p-5"><div className="space-y-2"><a href={project.live||project.github||"#"} target="_blank" rel="noopener noreferrer" className="block text-lg font-semibold text-white transition-colors hover:text-cyan-300">{project.title}</a><p className="text-sm leading-6 text-slate-400">{project.desc}</p></div><div className="flex flex-wrap gap-2">{(project.tech||[]).map(tech=><span key={tech} className="rounded-full border border-white/10 bg-white/[.025] px-3 py-1 text-[11px] font-semibold uppercase tracking-[.15em] text-slate-400">{tech}</span>)}</div><div className="grid gap-3 border-t border-white/10 pt-4 text-[13px] text-slate-500 sm:grid-cols-2"><div className="flex items-center gap-2"><span className="inline-flex h-3 w-3 rounded-full" style={{backgroundColor:getLanguageColor(primaryLanguage)}}/><span>{primaryLanguage}</span></div><div className="flex items-center gap-4"><div className="inline-flex items-center gap-1"><Star size={14}/><span>{stars}</span></div><div className="inline-flex items-center gap-1"><GitFork size={14}/><span>{forks}</span></div></div></div><div className="mt-4 flex flex-wrap gap-3">{project.live&&<a href={project.live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-200"><ExternalLink size={14}/>Live demo</a>}{project.github&&<a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[.025] px-4 py-2 text-sm font-semibold text-white hover:border-cyan-300/40 hover:text-cyan-300"><FaGithub size={14}/>Source code</a>}</div></div></article>}
+import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
+
+export default function ProjectCard({ project }) {
+  return (
+    <article className="neo-card group h-full overflow-hidden rounded-[26px]">
+      <div className="relative h-56 overflow-hidden bg-neutral-900">
+        {project.image ? <Image src={project.image} alt={project.title} fill className="object-cover transition duration-700 group-hover:scale-105" /> : <div className="flex h-full items-center justify-center text-sm text-neutral-500">Project preview</div>}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white">
+          <span className="rounded-full bg-[#c7ff32] px-3 py-1 text-[9px] font-black uppercase text-black">{project.category}</span>
+          <ArrowUpRight size={18} className="transition group-hover:rotate-45" />
+        </div>
+      </div>
+      <div className="flex h-[calc(100%-14rem)] flex-col p-6">
+        <h3 className="text-2xl font-black tracking-[-.04em]">{project.title}</h3>
+        <p className="mt-3 text-sm leading-6 text-neutral-600">{project.desc}</p>
+        <div className="mt-5 flex flex-wrap gap-2">{(project.tech || []).map((tech) => <span key={tech} className="neo-pill">{tech}</span>)}</div>
+        <div className="mt-auto flex gap-3 pt-7">
+          {project.live && <a href={project.live} target="_blank" rel="noreferrer" className="neo-button neo-button-dark">Live <ExternalLink size={13}/></a>}
+          {project.github && <a href={project.github} target="_blank" rel="noreferrer" className="neo-button">Code <Github size={13}/></a>}
+        </div>
+      </div>
+    </article>
+  );
+}
