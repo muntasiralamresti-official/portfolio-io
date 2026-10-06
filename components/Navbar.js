@@ -1,7 +1,33 @@
 "use client";
-import {useState} from "react";
-import Image from "next/image";
-import {usePathname} from "next/navigation";
-import {Menu,X,Sun,Moon,BookOpen,User,Star,Briefcase,Mail} from "lucide-react";
-import {useTheme} from "./ThemeProvider";
-export default function Navbar(){const[open,setOpen]=useState(false);const{theme,toggleTheme}=useTheme();const pathname=usePathname();const base=pathname==="/"?"":"/";const navItems=[{name:"Overview",href:`${base}#`,icon:<User size={15}/>},{name:"Projects",href:`${base}#projects`,icon:<BookOpen size={15}/>},{name:"Skills",href:`${base}#skills`,icon:<Star size={15}/>},{name:"Experience",href:`${base}#experience`,icon:<Briefcase size={15}/>},{name:"Contact",href:`${base}#contact`,icon:<Mail size={15}/>}];return <nav className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl"><div className="mx-auto flex h-[68px] max-w-[1280px] items-center justify-between px-4 md:px-6"><div className="flex items-center gap-3"><button onClick={()=>setOpen(!open)} className="rounded-md p-1.5 text-slate-400 md:hidden">{open?<X size={20}/>:<Menu size={20}/>}</button><div className="flex items-center gap-2"><div className="relative hidden h-8 w-8 overflow-hidden rounded-full border border-cyan-300/20 bg-slate-900 md:block"><Image src="/muntasir-logo.png" alt="Logo" fill priority className="object-contain p-1"/></div><span className="text-[13px] font-semibold tracking-wide text-slate-200">muntasiralamresti</span></div></div><div className="flex items-center gap-3"><div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[.025] p-1 md:flex">{navItems.map((item,index)=><a key={index} href={item.href} className="flex items-center gap-2 rounded-full px-3 py-2 text-[12px] font-medium text-slate-400 transition hover:bg-cyan-300/10 hover:text-cyan-200">{item.icon}{item.name}</a>)}</div><button onClick={toggleTheme} className="rounded-full border border-white/10 bg-white/[.025] p-2 text-slate-400 hover:text-cyan-300" aria-label="Toggle Theme">{theme==="dark"?<Sun size={15}/>:<Moon size={15}/>}</button></div></div>{open&&<div className="absolute w-full border-t border-white/10 bg-slate-950 px-4 py-2 md:hidden">{navItems.map((item,index)=><a key={index} href={item.href} onClick={()=>setOpen(false)} className="flex items-center gap-3 rounded-md px-3 py-3 text-[14px] text-slate-400 hover:text-cyan-300">{item.icon}{item.name}</a>)}</div>}</nav>
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import portfolio from "@/data/portfolio.json";
+
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const items = [
+    ["About", "#about"], ["Work", "#projects"], ["Skills", "#skills"],
+    ["Experience", "#experience"], ["Contact", "#contact"]
+  ];
+  return (
+    <nav className="neo-nav">
+      <div className="neo-container flex h-[74px] items-center justify-between">
+        <Link href="/" className="flex items-center gap-3 text-sm font-black tracking-[-.03em]">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-[11px] text-white">MA</span>
+          <span className="hidden sm:block">MUNTASIR ALAM</span>
+        </Link>
+        <div className="hidden items-center gap-7 md:flex">
+          {items.map(([name, href]) => <a key={name} href={href} className="text-[10px] font-bold uppercase tracking-[.15em] text-neutral-500 transition hover:text-black">{name}</a>)}
+        </div>
+        <div className="hidden md:block">
+          <a href={portfolio.socials.github} target="_blank" rel="noreferrer" className="neo-button neo-button-primary">GitHub <ArrowUpRight size={13}/></a>
+        </div>
+        <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X/> : <Menu/>}</button>
+      </div>
+      {open && <div className="border-t border-black/10 bg-[#f4f3ef] p-4 md:hidden">
+        {items.map(([name, href]) => <a key={name} href={href} onClick={() => setOpen(false)} className="block border-b border-black/10 py-4 text-xs font-bold uppercase tracking-[.15em]">{name}</a>)}
+      </div>}
+    </nav>
+  );
+}
